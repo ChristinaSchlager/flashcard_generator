@@ -83,8 +83,8 @@ This project integrates several APIs to enhance functionality and achieve compre
 Clone the repository and install the required packages:
 
 ```bash
-git clone https://github.com/ChristinaSchlager/flashcard_generator.git>
-cd <flashcard_generator>
+git clone https://github.com/ChristinaSchlager/flashcard_generator.git
+cd flashcard_generator
 pip install -r requirements.txt
 ```
 ## Documentation
