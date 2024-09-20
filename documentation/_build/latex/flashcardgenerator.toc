@@ -1,0 +1,9 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {1}Data Preparation}{1}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Data Storage}{2}{chapter.2}%
+\contentsline {chapter}{\numberline {3}Retriever}{4}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Generation}{5}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Evaluation}{7}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Utils}{10}{chapter.6}%
+\contentsline {chapter}{Python Module Index}{12}{section*.31}%
+\contentsline {chapter}{Index}{13}{section*.32}%

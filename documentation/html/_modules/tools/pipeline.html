@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+        <title>tools.pipeline &mdash; Flashcard Generator 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/dist/fontawesome.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/dist/theme.css?v=ea6a6c20" />
+            <link rel="index" title="Index" href="../../genindex.html" />
+            <link rel="search" title="Search" href="../../search.html" />
+            <link rel="top" title="Flashcard Generator 1.0.0 documentation" href="#" />
+            <link rel="up" title="Module code" href="../index.html" />
+    </head>
+<body>
+    <script type="text/javascript" src="../../_static/dist/blocking.js"></script>
+    <header class="container-fluid bg-primary">
+        <a class="btn btn-sm btn-light skip-to-content-link" href="#main">Skip to content</a>
+        <div class="container-fluid">
+            <div class="navbar navbar-expand-lg navbar-dark font-weight-bold">
+                    <a href="../../index.html"
+                        title="Wagtail"
+                        class="logo navbar-brand"
+                    >
+                        <img src="../../_static/img/wagtail-logo-new.svg" width="45" height="59" alt="Wagtail"
+                            class="logo-img"
+                        />
+                        Sphinx Wagtail Theme
+                    </a>
+                
+                
+                <button class="navbar-toggler btn btn-primary d-lg-none" type="button" data-toggle="collapse" data-target="#collapseSidebar" aria-expanded="false" aria-controls="collapseExample">
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="sr-only">menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <aside class="col-12 col-lg-3 sidebar-container">
+                <div id="collapseSidebar" class="collapse sticky-top d-lg-block pt-5 pr-lg-4">
+<div id="searchbox" class="searchbox mb-6 px-1" role="search">
+    <form id="search-form" action="../../search.html" autocomplete="off" method="get" role="search">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text border-right-0 bg-white py-3 pl-3 pr-2"><span class="fas fa-search"></span></div>
+            </div>
+            <input class="form-control py-3 pr-3 pl-1 h-100 border-left-0" type="search" name="q" placeholder="Search documentation" aria-label="Search documentation" id="searchinput" />
+        </div>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </form>
+</div><div class="site-toc">
+    <nav class="toc mt-3" aria-label="Main menu">
+        <p class="caption" role="heading"><span class="caption-text">Table of Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data_preparation.html">Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_storage.html">Data Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../retriever.html">Retriever</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generation.html">Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../evaluation.html">Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utils.html">Utils</a></li>
+</ul>
+
+    </nav>
+    <template data-toggle-item-template>
+        <button class="btn btn-sm btn-link toctree-expand" type="button">
+            <span class="sr-only">Toggle menu contents</span>
+        </button>
+    </template>
+</div>
+                    <div class="d-lg-none border-bottom">
+                        
+                    </div>
+                </div>
+            </aside>
+            <div class="col-12 col-lg-9 pt-5">
+                <header class="row align-items-baseline">
+                    <div class="col">
+                        <nav aria-label="breadcrumb">
+    <ol class="breadcrumb m-0 p-0 bg-transparent">
+        <li class="breadcrumb-item"><a href="../../index.html">Docs</a></li>
+            <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+        <li class="breadcrumb-item active" aria-current="page">tools.pipeline</li>
+    </ol>
+</nav>
+                    </div>
+                    <div class="col-sm-12 col-lg-auto mt-3 mt-lg-3">
+                        <noscript>
+                            <p>JavaScript is required to toggle light/dark mode..</p>
+                        </noscript>
+                        <button id="wagtail-theme" class="btn btn-sm btn-light text-decoration-none" type="button">
+                            <span class="dark-only"><i class="fas fa-sun"></i> Light mode</span>
+                            <span class="light-only"><i class="fas fa-moon"></i> Dark mode</span>
+                        </button>
+    <a class="btn btn-sm btn-light text-decoration-none" href="https://github.com/wagtail/sphinx_wagtail_theme/blob/main/docs/_modules/tools/pipeline" rel="nofollow">
+        <span class="btn-icon"><span class="fab fa-github"></span></span>
+        <span class="btn-text">Edit on GitHub</span>
+    </a>
+                        
+                    </div>
+                </header>
+                <div class="row" >
+                    <div class="col-12">
+                        <hr class="w-100 my-4">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-9 order-last order-lg-first rst-content">
+                        <main role="main" id="main">
+    <h1>Source code for tools.pipeline</h1><div class="highlight"><pre>
+<span></span><span class="c1"># requirements</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span> <span class="nn">together</span> <span class="kn">import</span> <span class="n">Together</span>
+<span class="kn">import</span> <span class="nn">together</span>
+
+<span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span><span class="p">,</span> <span class="n">Dataset</span>
+
+<span class="kn">from</span> <span class="nn">langchain_text_splitters</span> <span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
+<span class="kn">from</span> <span class="nn">langchain_chroma</span> <span class="kn">import</span> <span class="n">Chroma</span>
+<span class="kn">import</span> <span class="nn">chromadb</span>
+
+<span class="kn">from</span> <span class="nn">langchain_nomic</span> <span class="kn">import</span> <span class="n">NomicEmbeddings</span>
+
+<span class="kn">from</span> <span class="nn">langchain_openai</span> <span class="kn">import</span> <span class="n">OpenAIEmbeddings</span>
+<span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="c1"># Ragas Metrics (GPT-4)</span>
+<span class="kn">from</span> <span class="nn">ragas.llms</span> <span class="kn">import</span> <span class="n">LangchainLLMWrapper</span>
+<span class="kn">from</span> <span class="nn">langchain_openai.chat_models</span> <span class="kn">import</span> <span class="n">ChatOpenAI</span>
+<span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">Features</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Value</span>
+<span class="kn">from</span> <span class="nn">ragas.metrics</span> <span class="kn">import</span> <span class="n">faithfulness</span><span class="p">,</span> <span class="n">answer_relevancy</span><span class="p">,</span> <span class="n">answer_similarity</span><span class="p">,</span> <span class="n">answer_correctness</span><span class="p">,</span> <span class="n">context_precision</span><span class="p">,</span> <span class="n">context_recall</span><span class="p">,</span> <span class="n">context_entity_recall</span>
+<span class="kn">from</span> <span class="nn">ragas</span> <span class="kn">import</span> <span class="n">evaluate</span> <span class="k">as</span> <span class="n">ragas_evaluate</span>
+
+<span class="c1"># Deepval Metrics (GPT-4)</span>
+<span class="kn">from</span> <span class="nn">deepeval</span> <span class="kn">import</span> <span class="n">evaluate</span> <span class="k">as</span> <span class="n">deepeval_evaluate</span>
+<span class="kn">from</span> <span class="nn">deepeval.metrics</span> <span class="kn">import</span> <span class="n">ContextualPrecisionMetric</span><span class="p">,</span> <span class="n">ContextualRecallMetric</span><span class="p">,</span> <span class="n">ContextualRelevancyMetric</span><span class="p">,</span> <span class="n">FaithfulnessMetric</span><span class="p">,</span> <span class="n">AnswerRelevancyMetric</span><span class="p">,</span> <span class="n">BiasMetric</span><span class="p">,</span> <span class="n">ToxicityMetric</span>
+<span class="kn">from</span> <span class="nn">deepeval.test_case</span> <span class="kn">import</span> <span class="n">LLMTestCase</span>
+
+<span class="c1"># Haystack Metrics (GPT-3.5 Turbo)</span>
+<span class="kn">from</span> <span class="nn">haystack.components.generators</span> <span class="kn">import</span> <span class="n">OpenAIGenerator</span>
+<span class="kn">from</span> <span class="nn">haystack</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">haystack.components.evaluators</span> <span class="kn">import</span> <span class="n">ContextRelevanceEvaluator</span><span class="p">,</span> <span class="n">FaithfulnessEvaluator</span><span class="p">,</span> <span class="n">SASEvaluator</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">handlers</span><span class="p">[:]:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">removeHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Constants and Configuration</span>
+<span class="n">WIKIPEDIA_LANGUAGE</span> <span class="o">=</span> <span class="s2">&quot;simple&quot;</span>
+<span class="n">WIKIPEDIA_DATE</span> <span class="o">=</span> <span class="s2">&quot;20220301&quot;</span>
+<span class="n">CHROMA_OPENAI_PATH</span> <span class="o">=</span> <span class="s2">&quot;./chroma_db_openai&quot;</span>
+<span class="n">CHROMA_NOMIC_PATH</span> <span class="o">=</span> <span class="s2">&quot;./chroma_db_nomic&quot;</span>
+<span class="n">OPENAI_COLLECTION</span> <span class="o">=</span> <span class="s2">&quot;openai_rag_chroma_wikipedia&quot;</span>
+<span class="n">NOMIC_COLLECTION</span> <span class="o">=</span> <span class="s2">&quot;opensource_rag_wikipedia&quot;</span>
+<span class="n">TEXT_SPLITTER_CHUNK_SIZE</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">TEXT_SPLITTER_CHUNK_OVERLAP</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">MIN_VALID_LENGTH</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">VECTORSTORE_THRESHOLD</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">MAX_SECTION_LENGTH</span> <span class="o">=</span> <span class="mi">150</span>
+<span class="n">MIN_SECTION_LENGTH</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">CSV_SEPARATOR</span> <span class="o">=</span> <span class="s2">&quot;;&quot;</span>
+<span class="n">CSV_DECIMAL</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span>
+
+<span class="c1"># ============================================================================</span>
+<span class="c1"># Data Preparation</span>
+<span class="c1"># ============================================================================</span>
+<div class="viewcode-block" id="load_wikipedia_dataset">
+<a class="viewcode-back" href="../../data_preparation.html#tools.pipeline.load_wikipedia_dataset">[docs]</a>
+<span class="k">def</span> <span class="nf">load_wikipedia_dataset</span><span class="p">(</span><span class="n">language</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">WIKIPEDIA_LANGUAGE</span><span class="p">,</span> <span class="n">date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">WIKIPEDIA_DATE</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load the Wikipedia dataset from the Hugging Face Hub. This function loads the dataset</span>
+<span class="sd">    specified by language and date.</span>
+
+<span class="sd">    Hugging Face Dataset URL: https://huggingface.co/datasets/wikipedia</span>
+
+<span class="sd">    :param language: Language version of Wikipedia to load. Defaults to &#39;simple&#39; for Simple English.</span>
+<span class="sd">    :param date: The snapshot date of the Wikipedia dataset to load. Format: YYYYMMDD. Defaults to &quot;20220301&quot;.</span>
+
+<span class="sd">    :return: A dataset object that allows accessing the data as required.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading Wikipedia dataset: language=</span><span class="si">{</span><span class="n">language</span><span class="si">}</span><span class="s2">, date=</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;wikipedia&quot;</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="n">language</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">,</span> <span class="n">streaming</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="process_documents">
+<a class="viewcode-back" href="../../data_preparation.html#tools.pipeline.process_documents">[docs]</a>
+<span class="k">def</span> <span class="nf">process_documents</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">TEXT_SPLITTER_CHUNK_SIZE</span><span class="p">,</span>
+    <span class="n">chunk_overlap</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">TEXT_SPLITTER_CHUNK_OVERLAP</span><span class="p">,</span>
+    <span class="n">min_valid_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">MIN_VALID_LENGTH</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Process a dataset of documents by splitting each document into chunks, filtering these chunks based</span>
+<span class="sd">    on a minimum valid length, and annotating them with metadata.</span>
+
+<span class="sd">    This function uses a RecursiveCharacterTextSplitter to break down documents into manageable chunks. </span>
+<span class="sd">    Chunks that meet the minimum length requirement are kept and annotated with metadata from the original</span>
+<span class="sd">    document. The function then returns a list of valid chunks and statistics about the processing.</span>
+
+<span class="sd">    :param data: A dictionary containing a &#39;train&#39; key with a list of document dictionaries. Each document</span>
+<span class="sd">                    should have &#39;text&#39;, &#39;id&#39;, &#39;url&#39;, and &#39;title&#39; keys.</span>
+<span class="sd">    :param chunk_size: The size of each chunk in characters.</span>
+<span class="sd">    :param chunk_overlap: The number of characters to overlap between chunks.</span>
+<span class="sd">    :param min_valid_length: The minimum number of characters a chunk must have to be considered valid.</span>
+
+<span class="sd">    :return: A tuple containing four elements:</span>
+<span class="sd">             - A list of valid chunks, where each chunk is an object with &#39;page_content&#39; and &#39;metadata&#39;, which contains ID, url, and title.</span>
+<span class="sd">             - A list containing the count of chunks created from each document.</span>
+<span class="sd">             - Total number of chunks created across all documents.</span>
+<span class="sd">             - Total number of valid chunks that met the length requirement.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Processing documents into chunks&quot;</span><span class="p">)</span>
+    <span class="n">text_splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span>
+        <span class="n">chunk_size</span><span class="o">=</span><span class="n">chunk_size</span><span class="p">,</span>
+        <span class="n">chunk_overlap</span><span class="o">=</span><span class="n">chunk_overlap</span><span class="p">,</span>
+        <span class="n">length_function</span><span class="o">=</span><span class="nb">len</span><span class="p">,</span>
+        <span class="n">is_separator_regex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">texts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">chunk_counts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">total_chunks</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">total_valid_chunks</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">example</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]):</span>
+        <span class="n">chunks</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="o">.</span><span class="n">create_documents</span><span class="p">([</span><span class="n">example</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]])</span>
+        <span class="n">chunk_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
+        <span class="n">chunk_counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chunk_count</span><span class="p">)</span>
+        <span class="n">total_chunks</span> <span class="o">+=</span> <span class="n">chunk_count</span>
+
+        <span class="n">valid_chunks</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">page_content</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">min_valid_length</span><span class="p">:</span>
+                <span class="n">chunk</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">],</span> <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]}</span>
+                <span class="n">texts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+                <span class="n">valid_chunks</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">total_valid_chunks</span> <span class="o">+=</span> <span class="n">valid_chunks</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total chunks: </span><span class="si">{</span><span class="n">total_chunks</span><span class="si">}</span><span class="s2">, Valid chunks: </span><span class="si">{</span><span class="n">total_valid_chunks</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">texts</span><span class="p">,</span> <span class="n">chunk_counts</span><span class="p">,</span> <span class="n">total_chunks</span><span class="p">,</span> <span class="n">total_valid_chunks</span></div>
+
+
+<span class="c1"># ============================================================================</span>
+<span class="c1"># Data Storage</span>
+<span class="c1"># ============================================================================</span>
+
+<div class="viewcode-block" id="setup_vectorstore_openai">
+<a class="viewcode-back" href="../../data_storage.html#tools.pipeline.setup_vectorstore_openai">[docs]</a>
+<span class="k">def</span> <span class="nf">setup_vectorstore_openai</span><span class="p">(</span><span class="n">texts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">CHROMA_OPENAI_PATH</span><span class="p">,</span> <span class="n">collection_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">OPENAI_COLLECTION</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Chroma</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sets up a vector store using OpenAI embeddings (model &quot;text-embedding-3-large&quot;) with the provided documents. The function initializes</span>
+<span class="sd">    OpenAI embeddings, sets up a persistent client, checks for the existence of the specified collection</span>
+<span class="sd">    (or creates it), and populates a vector store with the documents.</span>
+
+<span class="sd">    :param texts: A list of documents (texts) to be stored in the vector store.</span>
+<span class="sd">    :param path: The file path where the vector store data will be located. Defaults to &quot;./chroma_db_openai&quot;.</span>
+<span class="sd">    :param collection_name: The name of the collection to be used or created in the vector store. </span>
+<span class="sd">                            Defaults to &quot;openai_rag_chroma_wikipedia&quot;.</span>
+
+<span class="sd">    :return: A tuple containing a configured instance of the `Chroma` vector store and the `OpenAIEmbeddings` used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Setting up vector store&quot;</span><span class="p">)</span>
+    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">OpenAIEmbeddings</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;text-embedding-3-large&quot;</span><span class="p">,</span> <span class="n">dimensions</span><span class="o">=</span><span class="mi">1536</span><span class="p">)</span> <span class="c1"># to stick to the 1536 dimensions</span>
+    <span class="n">persistent_client_openai</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">collection</span> <span class="o">=</span> <span class="n">persistent_client_openai</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="n">collection_name</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;hnsw:space&quot;</span><span class="p">:</span> <span class="s2">&quot;cosine&quot;</span><span class="p">})</span> <span class="c1">#cosine similarity instead of default L2</span>
+
+    <span class="n">vectorstore</span> <span class="o">=</span> <span class="n">Chroma</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span>
+        <span class="n">texts</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="n">persistent_client_openai</span><span class="p">,</span> <span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span>
+    <span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Vector store setup complete&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">vectorstore</span><span class="p">,</span> <span class="n">embeddings</span></div>
+
+
+
+<div class="viewcode-block" id="load_vectorstore_openai">
+<a class="viewcode-back" href="../../data_storage.html#tools.pipeline.load_vectorstore_openai">[docs]</a>
+<span class="k">def</span> <span class="nf">load_vectorstore_openai</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">CHROMA_OPENAI_PATH</span><span class="p">,</span> <span class="n">collection_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">OPENAI_COLLECTION</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Chroma</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Loads a vector store configured to use OpenAI embeddings with a specified collection.</span>
+
+<span class="sd">    This function initializes an OpenAI embeddings object and a persistent client, retrieves the specified</span>
+<span class="sd">    collection from the database, and initializes a `Chroma` vector store object configured with</span>
+<span class="sd">    the OpenAI embeddings.</span>
+
+<span class="sd">    :param path: The file path where the vector store data is located. Defaults to &quot;./chroma_db_openai&quot;.</span>
+<span class="sd">    :param collection_name: The name of the collection to be used in the vector store.</span>
+<span class="sd">                            Defaults to &quot;openai_rag_chroma_wikipedia&quot;.</span>
+
+<span class="sd">    :return: A configured instance of the `Chroma` vector store containing the documents and the `OpenAIEmbeddings` used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading vector store&quot;</span><span class="p">)</span>
+    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">OpenAIEmbeddings</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;text-embedding-3-large&quot;</span><span class="p">,</span> <span class="n">dimensions</span><span class="o">=</span><span class="mi">1536</span><span class="p">)</span>
+    <span class="n">persistent_client_openai</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">collection</span> <span class="o">=</span> <span class="n">persistent_client_openai</span><span class="o">.</span><span class="n">get_collection</span><span class="p">(</span><span class="n">collection_name</span><span class="p">)</span>
+
+    <span class="n">vectorstore</span> <span class="o">=</span> <span class="n">Chroma</span><span class="p">(</span>
+        <span class="n">client</span><span class="o">=</span><span class="n">persistent_client_openai</span><span class="p">,</span>
+        <span class="n">collection_name</span><span class="o">=</span> <span class="n">collection_name</span><span class="p">,</span>
+        <span class="n">embedding_function</span><span class="o">=</span><span class="n">embeddings</span>
+    <span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Vector store loaded successfully&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">vectorstore</span><span class="p">,</span> <span class="n">embeddings</span></div>
+
+
+<div class="viewcode-block" id="setup_vectorstore_nomic">
+<a class="viewcode-back" href="../../data_storage.html#tools.pipeline.setup_vectorstore_nomic">[docs]</a>
+<span class="k">def</span> <span class="nf">setup_vectorstore_nomic</span><span class="p">(</span><span class="n">texts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">CHROMA_NOMIC_PATH</span><span class="p">,</span> <span class="n">collection_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">NOMIC_COLLECTION</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Chroma</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sets up a vector store using Nomic embeddings (model &quot;nomic-embed-text-v1.5&quot;) with documents provided. </span>
+<span class="sd">    The function initializes Nomic embeddings, sets up a persistent client, ensures the collection </span>
+<span class="sd">    exists (or creates it),  and populates a vector store with the documents.</span>
+
+<span class="sd">    :param texts: A list of documents (texts) to be stored in the vector store.</span>
+<span class="sd">    :param path: The file path where the vector store data will be located. Defaults to &quot;./chroma_db_nomic&quot;.</span>
+<span class="sd">    :param collection: The name of the collection to be used or created in the vector store.</span>
+<span class="sd">                       Defaults to &quot;opensource_rag_wikipedia&quot;.</span>
+
+<span class="sd">    :return: A configured instance of the `Chroma` vector store containing the documents and &#39;Nomic Embeddings&#39; used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Setting up vector store&quot;</span><span class="p">)</span>
+    <span class="n">persistent_client_nomic</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">collection</span> <span class="o">=</span> <span class="n">persistent_client_nomic</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;hnsw:space&quot;</span><span class="p">:</span> <span class="s2">&quot;cosine&quot;</span><span class="p">})</span> <span class="c1">#cosine similarity instead of default L2</span>
+    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">NomicEmbeddings</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;nomic-embed-text-v1.5&quot;</span><span class="p">)</span>
+
+    <span class="n">vectorstore</span> <span class="o">=</span> <span class="n">Chroma</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span>
+        <span class="n">documents</span> <span class="o">=</span> <span class="n">texts</span><span class="p">,</span>
+        <span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">,</span>
+        <span class="n">embedding</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">,</span>
+        <span class="n">client</span><span class="o">=</span> <span class="n">persistent_client_nomic</span>
+    <span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Vector store setup complete&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">vectorstore</span><span class="p">,</span> <span class="n">embeddings</span></div>
+
+
+<div class="viewcode-block" id="load_vectorstore_nomic">
+<a class="viewcode-back" href="../../data_storage.html#tools.pipeline.load_vectorstore_nomic">[docs]</a>
+<span class="k">def</span> <span class="nf">load_vectorstore_nomic</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">CHROMA_NOMIC_PATH</span><span class="p">,</span> <span class="n">collection_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">NOMIC_COLLECTION</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Chroma</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Loads a vector store configured to use the Nomic embeddings with a specified collection.</span>
+
+<span class="sd">    This function initializes an embeddings object and a persistent client, retrieves the specified</span>
+<span class="sd">    collection from the database, and finally initializes and returns a `Chroma` vector store object</span>
+<span class="sd">    configured with the Nomic embeddings.</span>
+
+<span class="sd">    :param path: The file path where the vector store data is located. Defaults to &quot;./chroma_db_nomic&quot;.</span>
+<span class="sd">    :param collection: The name of the collection to be used in the vector store.</span>
+<span class="sd">    Defaults to &quot;opensource_rag_wikipedia&quot;.</span>
+
+<span class="sd">    :return: A configured instance of the `Chroma` vector store.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading vector store&quot;</span><span class="p">)</span>
+    <span class="n">persistent_client_nomic</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">collection</span> <span class="o">=</span> <span class="n">persistent_client_nomic</span><span class="o">.</span><span class="n">get_collection</span><span class="p">(</span><span class="n">collection_name</span><span class="p">)</span>
+    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">NomicEmbeddings</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;nomic-embed-text-v1.5&quot;</span><span class="p">)</span>
+
+    <span class="n">vectorstore</span> <span class="o">=</span> <span class="n">Chroma</span><span class="p">(</span>
+        <span class="n">persist_directory</span><span class="o">=</span> <span class="s2">&quot;chroma_db_nomic&quot;</span><span class="p">,</span>
+        <span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">,</span>
+        <span class="n">embedding_function</span><span class="o">=</span> <span class="n">embeddings</span>
+    <span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Vector store loaded successfully&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">vectorstore</span><span class="p">,</span> <span class="n">embeddings</span></div>
+
+
+<span class="c1"># ============================================================================</span>
+<span class="c1"># Retriever</span>
+<span class="c1"># ============================================================================</span>
+
+<div class="viewcode-block" id="retrieve_documents">
+<a class="viewcode-back" href="../../retriever.html#tools.pipeline.retrieve_documents">[docs]</a>
+<span class="k">def</span> <span class="nf">retrieve_documents</span><span class="p">(</span><span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">vectorstore</span><span class="p">:</span> <span class="n">Chroma</span><span class="p">,</span> <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">VECTORSTORE_THRESHOLD</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieves documents from the vector store based on a similarity score threshold.</span>
+<span class="sd">    </span>
+<span class="sd">    This function initializes a retriever with the specified threshold for similarity scoring, using the &#39;similarity_score_threshold&#39; search type.</span>
+<span class="sd">    It then invokes the retriever with a given topic to fetch documents that meet or exceed the specified similarity score threshold.</span>
+
+<span class="sd">    :param topic: The topic query as a string which is used to retrieve relevant documents.</span>
+<span class="sd">    :param vectorstore: The vector store instance which contains the document embeddings and provides the retrieval mechanism.</span>
+<span class="sd">    :param threshold: The minimum similarity score threshold. Documents with a similarity score above this threshold will be considered relevant.</span>
+
+<span class="sd">    :return: Returns a list of documents or relevant entries that match the topic based on the specified similarity score threshold.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Retrieving documents for topic: </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2"> with threshold: </span><span class="si">{</span><span class="n">threshold</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">retriever</span> <span class="o">=</span> <span class="n">vectorstore</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(</span><span class="n">search_type</span><span class="o">=</span><span class="s2">&quot;similarity_score_threshold&quot;</span><span class="p">,</span> <span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;score_threshold&quot;</span><span class="p">:</span> <span class="n">threshold</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">retriever</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">topic</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="format_documents">
+<a class="viewcode-back" href="../../retriever.html#tools.pipeline.format_documents">[docs]</a>
+<span class="k">def</span> <span class="nf">format_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Formats a list of document objects into a standardized dictionary format.</span>
+
+<span class="sd">    This function iterates through each document in the provided list, extracting relevant metadata namely, page content, ID, title, and source (URL).</span>
+<span class="sd">    Each document is then transformed into a dictionary with keys for &#39;context&#39;, &#39;id&#39;, &#39;title&#39;, and &#39;source&#39;, based on the respective properties and metadata from the document objects.</span>
+
+<span class="sd">    :param docs: A list of document objects, each containing content and metadata.</span>
+<span class="sd">    </span>
+<span class="sd">    :return: A list of dictionaries where each dictionary represents a document with formatted data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Formatting documents&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="n">doc</span><span class="o">.</span><span class="n">page_content</span><span class="p">,</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
+            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">],</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">docs</span>
+    <span class="p">]</span></div>
+
+
+<span class="c1"># ============================================================================</span>
+<span class="c1"># Generation</span>
+<span class="c1"># ============================================================================</span>
+<div class="viewcode-block" id="split_text_into_sections">
+<a class="viewcode-back" href="../../generation.html#tools.pipeline.split_text_into_sections">[docs]</a>
+<span class="k">def</span> <span class="nf">split_text_into_sections</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">MAX_SECTION_LENGTH</span><span class="p">,</span> <span class="n">min_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">MIN_SECTION_LENGTH</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Splits a given text into sections based on specified maximum and minimum lengths.</span>
+<span class="sd">    </span>
+<span class="sd">    The function divides the input text into paragraphs, and sequentially adds paragraphs</span>
+<span class="sd">    to a current section until adding another paragraph would exceed the maximum length.</span>
+<span class="sd">    If the current section meets the minimum length requirement, it is saved as a separate</span>
+<span class="sd">    section. This continues until all paragraphs are processed.</span>
+<span class="sd">    </span>
+<span class="sd">    :param text: The text to be split into sections.</span>
+<span class="sd">    :param max_length: The maximum length of each section in characters, defaults to 150.</span>
+<span class="sd">    :param min_length: The minimum length a section must have to be considered valid, defaults to 50.</span>
+<span class="sd">    </span>
+<span class="sd">    :return: A list of text sections that meet the length requirements.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sections</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">current_section</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">paragraph</span> <span class="ow">in</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">):</span>
+        <span class="n">paragraph</span> <span class="o">=</span> <span class="n">paragraph</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">paragraph</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_section</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">paragraph</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">max_length</span><span class="p">:</span>
+            <span class="n">current_section</span> <span class="o">+=</span> <span class="n">paragraph</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_section</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">min_length</span><span class="p">:</span>
+                <span class="n">sections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_section</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+            <span class="n">current_section</span> <span class="o">=</span> <span class="n">paragraph</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_section</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">min_length</span><span class="p">:</span>
+        <span class="n">sections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_section</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">sections</span></div>
+
+
+<div class="viewcode-block" id="calculate_num_pairs">
+<a class="viewcode-back" href="../../generation.html#tools.pipeline.calculate_num_pairs">[docs]</a>
+<span class="k">def</span> <span class="nf">calculate_num_pairs</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates the number of sections a text can be divided into using the `split_text_into_sections` function.</span>
+<span class="sd">    </span>
+<span class="sd">    This function first divides the text into sections based on predefined criteria in `split_text_into_sections`.</span>
+<span class="sd">    It then calculates the number of these sections (pairs), returning the total count.</span>
+
+<span class="sd">    :param text: The text for which to calculate the number of dividable sections.</span>
+<span class="sd">    </span>
+<span class="sd">    :return: The number of sections into which the text was divided.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sections</span> <span class="o">=</span> <span class="n">split_text_into_sections</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">num_pairs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sections</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">num_pairs</span></div>
+
+
+<div class="viewcode-block" id="generate_question_answer_pairs_open_source_json">
+<a class="viewcode-back" href="../../generation.html#tools.pipeline.generate_question_answer_pairs_open_source_json">[docs]</a>
+<span class="k">def</span> <span class="nf">generate_question_answer_pairs_open_source_json</span><span class="p">(</span><span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">vectorstore</span><span class="p">:</span> <span class="n">Chroma</span><span class="p">,</span> <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">VECTORSTORE_THRESHOLD</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates unique question-answer pairs from documents retrieved based on a topic. </span>
+
+<span class="sd">    This function first retrieves documents related to the specified topic with a similarity score above the given threshold.</span>
+<span class="sd">    It then formats these documents and splits them into smaller sections suitable for generating question-answer pairs.</span>
+<span class="sd">    Each section is processed to produce unique and contextually relevant question-answer pairs, using the model</span>
+<span class="sd">    &#39;meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo&#39; via the Together API.</span>
+
+<span class="sd">    **Dependencies**:</span>
+<span class="sd">        - **Together API**: Used to generate question-answer pairs using a model-based approach.</span>
+<span class="sd">        - **Model**: &#39;meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo&#39;. This model is specified to generate question-answer</span>
+<span class="sd">          pairs that are unique and tailored to the educational content based on the document&#39;s context.</span>
+
+<span class="sd">    :param topic: The topic query to fetch related documents.</span>
+<span class="sd">    :param vectorstore: The vector store instance used to retrieve document embeddings.</span>
+<span class="sd">    :param threshold: The similarity score threshold for document retrieval. Defaults to 0.5.</span>
+
+<span class="sd">    :return: A JSON string containing a list of unique question-answer pairs generated from the documents.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generating QA pairs&quot;</span><span class="p">)</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">Together</span><span class="p">()</span>
+    <span class="n">docs</span> <span class="o">=</span> <span class="n">retrieve_documents</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">vectorstore</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
+    <span class="n">formatted_docs</span> <span class="o">=</span> <span class="n">format_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+
+    <span class="n">qa_pairs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">formatted_docs</span><span class="p">:</span>
+        <span class="n">num_pairs</span> <span class="o">=</span> <span class="n">calculate_num_pairs</span><span class="p">(</span><span class="n">doc</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">])</span>
+
+        <span class="n">sections</span> <span class="o">=</span> <span class="n">split_text_into_sections</span><span class="p">(</span><span class="n">doc</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">])</span>
+
+        <span class="n">pairs_generated</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">sections</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">pairs_generated</span> <span class="o">&gt;=</span> <span class="n">num_pairs</span><span class="p">:</span>
+                <span class="k">break</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">section</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+                <span class="k">continue</span>
+
+            <span class="n">user_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            Imagine you are a teacher tasked with creating engaging learning materials about the </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2"> for your students.</span>
+<span class="s2">            The focus is on fostering broad knowledge rather than asking specific historical dates.</span>
+<span class="s2">            Your objective is to generate **unique** question-answer-pair in English that can be used as a flashcard.</span>
+<span class="s2">            This should be derived from the provided text section in ENGLISH.</span>
+<span class="s2">            Aim to craft a question and answer that is intriguing and diverse, appropriate for sparking curiosity and discussion.</span>
+
+<span class="s2">            Here is the format you should follow:</span>
+<span class="s2">            </span><span class="se">{{</span>
+<span class="s2">                &quot;question&quot;: str,</span>
+<span class="s2">                &quot;answer&quot;: str,</span>
+<span class="s2">                &quot;context&quot;: &quot;</span><span class="si">{</span><span class="n">section</span><span class="si">}</span><span class="s2">&quot;,</span>
+<span class="s2">                &quot;source&quot;: &quot;</span><span class="si">{</span><span class="n">doc</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="s2">            </span><span class="se">}}</span>
+
+<span class="s2">            Ensure the question is derived from the section provided:</span>
+<span class="s2">            Text section: </span><span class="si">{</span><span class="n">section</span><span class="si">}</span>
+<span class="s2">            &quot;&quot;&quot;</span>
+
+            <span class="n">chat_completion</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+                    <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Please output valid JSON&quot;</span><span class="p">},</span>
+                    <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">user_prompt</span><span class="p">}</span>
+                <span class="p">],</span>
+                <span class="n">model</span><span class="o">=</span><span class="s2">&quot;meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo&quot;</span><span class="p">,</span>
+                <span class="n">response_format</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;json_object&quot;</span><span class="p">},</span>
+                <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">choices</span>
+
+            <span class="n">content</span> <span class="o">=</span> <span class="n">chat_completion</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">reply</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reply</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                    <span class="n">question_unique</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span>
+                        <span class="n">reply</span><span class="p">[</span><span class="s1">&#39;question&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="n">existing</span><span class="p">[</span><span class="s1">&#39;question&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+                        <span class="k">for</span> <span class="n">existing</span> <span class="ow">in</span> <span class="n">qa_pairs</span>
+                    <span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">question_unique</span><span class="p">:</span>
+                        <span class="n">reply</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">section</span>
+                        <span class="n">reply</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">doc</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span>
+                        <span class="n">qa_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reply</span><span class="p">)</span>
+                        <span class="n">pairs_generated</span> <span class="o">+=</span> <span class="mi">1</span>
+                        <span class="c1">#logger.info(f&quot;Generated QA pair {pairs_generated}&quot;)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Duplicate question detected, generating a new one...&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected format in reply: </span><span class="si">{</span><span class="n">reply</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">:</span>
+               <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Failed to parse JSON response&quot;</span><span class="p">)</span>
+               <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">chat_completion</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generated a total of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">qa_pairs</span><span class="p">)</span><span class="si">}</span><span class="s2"> QA pairs&quot;</span><span class="p">)</span>
+    <span class="n">combined_output</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">qa_pairs</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">combined_output</span></div>
+
+
+<div class="viewcode-block" id="generate_question_answer_pairs_open_ai_json">
+<a class="viewcode-back" href="../../generation.html#tools.pipeline.generate_question_answer_pairs_open_ai_json">[docs]</a>
+<span class="k">def</span> <span class="nf">generate_question_answer_pairs_open_ai_json</span><span class="p">(</span><span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">vectorstore</span><span class="p">:</span> <span class="n">Chroma</span><span class="p">,</span> <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">VECTORSTORE_THRESHOLD</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates unique question-answer pairs from documents retrieved based on a topic. </span>
+
+<span class="sd">    This function first retrieves documents related to the specified topic with a similarity score above the given threshold.</span>
+<span class="sd">    It then formats these documents and splits them into smaller sections suitable for generating question-answer pairs.</span>
+<span class="sd">    Each section is processed to produce unique and contextually relevant question-answer pairs, using the model</span>
+<span class="sd">    &#39;gpt-4-turbo&#39; via the OpenAI API.</span>
+
+<span class="sd">    **Dependencies**:</span>
+<span class="sd">        - **OpenAI API**: Used to generate question-answer pairs using a model-based approach.</span>
+<span class="sd">        - **Model**: &#39;gpt-4-turbo&#39;. This model is specified for its ability to generate detailed and contextually</span>
+<span class="sd">          accurate question-answer pairs.</span>
+
+<span class="sd">    :param topic: The topic query to fetch related documents.</span>
+<span class="sd">    :param vectorstore: The vector store instance used to retrieve document embeddings.</span>
+<span class="sd">    :param threshold: The similarity score threshold for document retrieval. Defaults to 0.5.</span>
+
+<span class="sd">    :return: A JSON string containing a list of unique question-answer pairs generated from the documents.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generating QA pairs&quot;</span><span class="p">)</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+    <span class="n">docs</span> <span class="o">=</span> <span class="n">retrieve_documents</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">vectorstore</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
+    <span class="n">formatted_docs</span> <span class="o">=</span> <span class="n">format_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+    <span class="n">qa_pairs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">formatted_docs</span><span class="p">:</span>
+        <span class="n">num_pairs</span> <span class="o">=</span> <span class="n">calculate_num_pairs</span><span class="p">(</span><span class="n">doc</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">])</span>
+
+        <span class="n">sections</span> <span class="o">=</span> <span class="n">split_text_into_sections</span><span class="p">(</span><span class="n">doc</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">])</span>
+
+        <span class="n">pairs_generated</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">sections</span><span class="p">:</span>
+            
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">section</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+                <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="n">pairs_generated</span> <span class="o">&gt;=</span> <span class="n">num_pairs</span><span class="p">:</span>
+                <span class="k">break</span>
+
+            <span class="n">user_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            Imagine you are a teacher tasked with creating engaging learning materials about the </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2"> for your students.</span>
+<span class="s2">            The focus is on fostering broad knowledge rather than asking specific historical dates.</span>
+<span class="s2">            Your objective is to generate **unique** question-answer-pair in English that can be used as a flashcard.</span>
+<span class="s2">            This should be derived from the provided text section in ENGLISH.</span>
+<span class="s2">            Aim to craft a question and answer that is intriguing and diverse, appropriate for sparking curiosity and discussion.</span>
+
+<span class="s2">            Here is the format you should follow:</span>
+<span class="s2">            </span><span class="se">{{</span>
+<span class="s2">                &quot;question&quot;: str,</span>
+<span class="s2">                &quot;answer&quot;: str,</span>
+<span class="s2">                &quot;context&quot;: &quot;</span><span class="si">{</span><span class="n">section</span><span class="si">}</span><span class="s2">&quot;,</span>
+<span class="s2">                &quot;source&quot;: &quot;</span><span class="si">{</span><span class="n">doc</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="s2">            </span><span class="se">}}</span>
+
+<span class="s2">            Ensure the question is derived from the section provided:</span>
+<span class="s2">            Text section: </span><span class="si">{</span><span class="n">section</span><span class="si">}</span>
+<span class="s2">            &quot;&quot;&quot;</span>
+
+            <span class="n">chat_completion</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+                    <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Please output valid JSON&quot;</span><span class="p">},</span>
+                    <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">user_prompt</span><span class="p">}</span>
+                <span class="p">],</span>
+                <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4-turbo&quot;</span><span class="p">,</span>
+                <span class="n">response_format</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;json_object&quot;</span><span class="p">},</span>
+                <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">choices</span>
+
+            <span class="n">content</span> <span class="o">=</span> <span class="n">chat_completion</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">reply</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reply</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                    <span class="n">question_unique</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span>
+                        <span class="n">reply</span><span class="p">[</span><span class="s1">&#39;question&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="n">existing</span><span class="p">[</span><span class="s1">&#39;question&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+                        <span class="k">for</span> <span class="n">existing</span> <span class="ow">in</span> <span class="n">qa_pairs</span>
+                    <span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">question_unique</span><span class="p">:</span>
+                        <span class="n">reply</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">section</span>
+                        <span class="n">reply</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">doc</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span>
+                        <span class="n">qa_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reply</span><span class="p">)</span>
+                        <span class="n">pairs_generated</span> <span class="o">+=</span> <span class="mi">1</span>
+                        <span class="c1">#logger.info(f&quot;Generated QA pair {pairs_generated}&quot;)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Duplicate question detected, generating a new one...&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected format in reply: </span><span class="si">{</span><span class="n">reply</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">:</span>
+               <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Failed to parse JSON response&quot;</span><span class="p">)</span>
+               <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">chat_completion</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generated a total of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">qa_pairs</span><span class="p">)</span><span class="si">}</span><span class="s2"> QA pairs&quot;</span><span class="p">)</span>
+    <span class="n">combined_output</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">qa_pairs</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">combined_output</span></div>
+
+
+<span class="c1"># ============================================================================</span>
+<span class="c1"># Evaluation</span>
+<span class="c1"># ============================================================================</span>
+<div class="viewcode-block" id="evaluate_retriever">
+<a class="viewcode-back" href="../../evaluation.html#tools.pipeline.evaluate_retriever">[docs]</a>
+<span class="k">def</span> <span class="nf">evaluate_retriever</span><span class="p">(</span><span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">vectorstore</span><span class="p">:</span> <span class="n">Chroma</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Evaluates the performance of a vector store&#39;s retrieval capabilities by conducting searches using</span>
+<span class="sd">    both cosine similarity and cosine distance metrics, and then compares the results.</span>
+
+<span class="sd">    This function retrieves the top &#39;k&#39; documents based on the cosine similarity and cosine distance</span>
+<span class="sd">    metrics for a given topic. It constructs a DataFrame containing the results, including each</span>
+<span class="sd">    document&#39;s ID, URL, context, similarity score, and distance score.</span>
+
+<span class="sd">    :param topic: The topic string based on which the documents are retrieved.</span>
+<span class="sd">    :param vectorstore: An instance of a vector store configured with embeddings used for retrieving documents.</span>
+<span class="sd">    :param k: The number of top documents to retrieve, defaults to 10.</span>
+<span class="sd">    </span>
+<span class="sd">    :return: A pandas DataFrame containing the document details and their respective retrieval scores.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">cosine_similarity_results</span> <span class="o">=</span> <span class="n">vectorstore</span><span class="o">.</span><span class="n">similarity_search_with_relevance_scores</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">cosine_distance_results</span> <span class="o">=</span> <span class="n">vectorstore</span><span class="o">.</span><span class="n">similarity_search_with_score</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+
+    <span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">doc</span><span class="p">,</span> <span class="n">similarity_score</span> <span class="ow">in</span> <span class="n">cosine_similarity_results</span><span class="p">:</span>
+        <span class="n">distance_score</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">score</span> <span class="k">for</span> <span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span> <span class="ow">in</span> <span class="n">cosine_distance_results</span> <span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]),</span> <span class="kc">None</span><span class="p">)</span>
+        
+        <span class="n">row</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;ID&#39;</span><span class="p">:</span> <span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;URL&#39;</span><span class="p">:</span> <span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;Context&#39;</span><span class="p">:</span> <span class="n">doc</span><span class="o">.</span><span class="n">page_content</span><span class="p">,</span>
+            <span class="s1">&#39;Similarity Score&#39;</span><span class="p">:</span> <span class="n">similarity_score</span><span class="p">,</span>
+            <span class="s1">&#39;Distance Score&#39;</span><span class="p">:</span> <span class="n">distance_score</span>
+        <span class="p">}</span>
+        <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Retriever evaluation complete&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="ragas_prepare_data">
+<a class="viewcode-back" href="../../evaluation.html#tools.pipeline.ragas_prepare_data">[docs]</a>
+<span class="k">def</span> <span class="nf">ragas_prepare_data</span><span class="p">(</span><span class="n">dataset</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Prepares a dataset for use of the Ragas evaluation metrics by transforming</span>
+<span class="sd">    and ensuring proper formatting of its columns. This function resets the dataset index, ensures</span>
+<span class="sd">    &#39;contexts&#39; are lists of strings, optionally adds a &#39;ground_truth&#39; field, removes unnecessary</span>
+<span class="sd">    columns, and casts the dataset to specified features.</span>
+
+<span class="sd">    :param dataset: The dataset to prepare, which should contain at least the &#39;question&#39;, &#39;answer&#39;, &#39;contexts&#39; and &#39;source&#39; field.</span>
+<span class="sd">    :param ground_truth: If True, includes the &#39;ground_truth&#39; field in the final dataset.</span>
+
+<span class="sd">    :return: The transformed dataset with the specified features format.</span>
+<span class="sd">    :raises ValueError: If the data type of the &#39;contexts&#39; field is neither a string nor a list.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ragas_data</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ragas_data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">ragas_data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">ensure_list</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">value</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected data type: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">ragas_data</span> <span class="o">=</span> <span class="n">ragas_data</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">example</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;contexts&#39;</span><span class="p">:</span> <span class="n">ensure_list</span><span class="p">(</span><span class="n">example</span><span class="p">[</span><span class="s1">&#39;contexts&#39;</span><span class="p">])})</span>
+
+    <span class="n">feature_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;question&#39;</span><span class="p">:</span> <span class="n">Value</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;answer&#39;</span><span class="p">:</span> <span class="n">Value</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;contexts&#39;</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">Value</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)),</span>
+        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="n">Value</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">ground_truth</span><span class="p">:</span>
+        <span class="n">feature_dict</span><span class="p">[</span><span class="s1">&#39;ground_truth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Value</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span>
+
+    <span class="n">features</span> <span class="o">=</span> <span class="n">Features</span><span class="p">(</span><span class="n">feature_dict</span><span class="p">)</span>
+    <span class="n">ragas_data</span> <span class="o">=</span> <span class="n">ragas_data</span><span class="o">.</span><span class="n">remove_columns</span><span class="p">([</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">ragas_data</span><span class="o">.</span><span class="n">column_names</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">features</span><span class="p">])</span>
+    <span class="n">ragas_data</span> <span class="o">=</span> <span class="n">ragas_data</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Data prepared for Ragas evaluation&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ragas_data</span></div>
+
+
+<div class="viewcode-block" id="ragas_evaluate_data">
+<a class="viewcode-back" href="../../evaluation.html#tools.pipeline.ragas_evaluate_data">[docs]</a>
+<span class="k">def</span> <span class="nf">ragas_evaluate_data</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">,</span>
+    <span class="n">ChatOpenAI_model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;gpt-4&quot;</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">ground_truth</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Evaluates the prepared dataset using various evaluadtion metrics with a specified ChatGPT model as additional large language model.</span>
+<span class="sd">    It wraps the ChatGPT model in a LangchainLLMWrapper and calculates different metrics based on whether ground truth is considered.</span>
+
+<span class="sd">    :param data: The prepared dataset to evaluate.</span>
+<span class="sd">    :param ChatOpenAI_model_name: The model name of the ChatGPT to use for evaluation.</span>
+<span class="sd">    :param temperature: The sampling temperature to use in the model inference, defaults to 0.</span>
+<span class="sd">    :param ground_truth: Specifies whether metrics that require ground truth data should be included.</span>
+
+<span class="sd">    :return: The evaluation results with specified metrics.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">llm_instance</span> <span class="o">=</span> <span class="n">LangchainLLMWrapper</span><span class="p">(</span><span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="n">ChatOpenAI_model_name</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">ground_truth</span><span class="p">:</span>
+        <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">faithfulness</span><span class="p">,</span> <span class="n">answer_relevancy</span><span class="p">,</span> <span class="n">context_precision</span><span class="p">,</span> <span class="n">context_recall</span><span class="p">,</span> <span class="n">answer_similarity</span><span class="p">,</span> <span class="n">context_entity_recall</span><span class="p">,</span> <span class="n">answer_correctness</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">faithfulness</span><span class="p">,</span> <span class="n">answer_relevancy</span><span class="p">]</span>
+    <span class="n">ragas_evaluation_data</span> <span class="o">=</span> <span class="n">ragas_evaluate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">,</span> <span class="n">llm</span><span class="o">=</span><span class="n">llm_instance</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Ragas evaluation complete&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ragas_evaluation_data</span></div>
+
+
+
+<div class="viewcode-block" id="deepeval_prepare_data">
+<a class="viewcode-back" href="../../evaluation.html#tools.pipeline.deepeval_prepare_data">[docs]</a>
+<span class="k">def</span> <span class="nf">deepeval_prepare_data</span><span class="p">(</span><span class="n">dataset</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">LLMTestCase</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Prepares a dataset for using DeepEval evaluation metrics by creating test cases for each entry in the dataset. </span>
+<span class="sd">    Each test case is structured to include a question, the actual and expected answers (if ground truth is provided),</span>
+<span class="sd">    and the retrieval context.</span>
+
+<span class="sd">    :param dataset: The dataset to be prepared, typically containing &#39;question&#39;, &#39;answer&#39;, and &#39;contexts&#39; columns,</span>
+<span class="sd">                    and optionally a &#39;ground_truth&#39; column if ground_truth is True.</span>
+<span class="sd">    :param ground_truth: Specifies whether the &#39;ground_truth&#39; column should be included in the test cases.</span>
+
+<span class="sd">    :return: A list of test cases, each designed for evaluation purposes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Preparing data for DeepEval evaluation&quot;</span><span class="p">)</span>
+    <span class="n">deepeval_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">ground_truth</span><span class="p">:</span>
+            <span class="n">test_case</span> <span class="o">=</span> <span class="n">LLMTestCase</span><span class="p">(</span>
+            <span class="nb">input</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;question&#39;</span><span class="p">],</span>
+            <span class="n">actual_output</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;answer&#39;</span><span class="p">],</span>
+            <span class="n">expected_output</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ground_truth&#39;</span><span class="p">],</span>
+            <span class="n">retrieval_context</span><span class="o">=</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;contexts&#39;</span><span class="p">]]</span>
+        <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">test_case</span> <span class="o">=</span> <span class="n">LLMTestCase</span><span class="p">(</span>
+            <span class="nb">input</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;question&#39;</span><span class="p">],</span>
+            <span class="n">actual_output</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;answer&#39;</span><span class="p">],</span>
+            <span class="n">retrieval_context</span><span class="o">=</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;contexts&#39;</span><span class="p">]]</span>
+        <span class="p">)</span>
+        <span class="n">deepeval_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_case</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Data prepared for DeepEval evaluation&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">deepeval_data</span></div>
+
+
+<div class="viewcode-block" id="deepeval_evaluate_data">
+<a class="viewcode-back" href="../../evaluation.html#tools.pipeline.deepeval_evaluate_data">[docs]</a>
+<span class="k">def</span> <span class="nf">deepeval_evaluate_data</span><span class="p">(</span>
+    <span class="n">deepeval_data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">LLMTestCase</span><span class="p">],</span>
+    <span class="n">ground_truth</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;gpt-4&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Evaluates a prepared dataset using a suite of DeepEval&#39;s metrics designed to assess the performance of language models. </span>
+<span class="sd">    It outputs a structured report summarizing the results of each metric evaluation based on whether ground truth is considered.</span>
+
+<span class="sd">    :param deepeval_data: The dataset containing test cases prepared for evaluation.</span>
+<span class="sd">    :param ground_truth: Specifies whether metrics that require ground truth data should be included.</span>
+<span class="sd">    :param model: The name of the model to be used for evaluation, defaults to &quot;gpt-4&quot;.</span>
+
+<span class="sd">    :return: Outputs a structured report summarizing the metric evaluations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting DeepEval evaluation&quot;</span><span class="p">)</span>
+    <span class="n">metrics</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">deepeval_faithfulness</span> <span class="o">=</span> <span class="n">FaithfulnessMetric</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+    <span class="n">deepeval_answer_relevancy</span> <span class="o">=</span> <span class="n">AnswerRelevancyMetric</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+    <span class="n">deepeval_contextual_relevancy</span> <span class="o">=</span> <span class="n">ContextualRelevancyMetric</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+    <span class="n">deepeval_bias</span> <span class="o">=</span> <span class="n">BiasMetric</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+    <span class="n">deepeval_toxicity</span> <span class="o">=</span> <span class="n">ToxicityMetric</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+    
+    <span class="n">metrics</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
+        <span class="n">deepeval_faithfulness</span><span class="p">,</span>
+        <span class="n">deepeval_answer_relevancy</span><span class="p">,</span>
+        <span class="n">deepeval_contextual_relevancy</span><span class="p">,</span>
+        <span class="n">deepeval_bias</span><span class="p">,</span>
+        <span class="n">deepeval_toxicity</span>
+    <span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">ground_truth</span><span class="p">:</span>
+        <span class="n">deepeval_contextual_precision</span> <span class="o">=</span> <span class="n">ContextualPrecisionMetric</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+        <span class="n">deepeval_contextual_recall</span> <span class="o">=</span> <span class="n">ContextualRecallMetric</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+        
+        <span class="n">metrics</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
+            <span class="n">deepeval_contextual_precision</span><span class="p">,</span>
+            <span class="n">deepeval_contextual_recall</span>
+        <span class="p">])</span>
+    
+    <span class="n">deepeval_evaluate</span><span class="p">(</span>
+        <span class="n">test_cases</span><span class="o">=</span><span class="n">deepeval_data</span><span class="p">,</span>
+        <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span>
+    <span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;DeepEval evaluation complete&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="haystack_prepare_data">
+<a class="viewcode-back" href="../../evaluation.html#tools.pipeline.haystack_prepare_data">[docs]</a>
+<span class="k">def</span> <span class="nf">haystack_prepare_data</span><span class="p">(</span><span class="n">dataset</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Prepares a dataset for using Haystack&#39;s evaluation metrics by formatting the input data into a</span>
+<span class="sd">    specific structure.</span>
+
+<span class="sd">    :param dataset: The dataset to be prepared, typically containing &#39;question&#39;, &#39;answer&#39;, and &#39;contexts&#39; columns,</span>
+<span class="sd">                    and optionally a &#39;ground_truth&#39; column if ground_truth is True.</span>
+<span class="sd">    :param ground_truth: Specifies whether metrics that require ground truth data should be included.</span>
+
+<span class="sd">    :return: A list of dictionaries, each containing data for a single instance. Each dictionary includes</span>
+<span class="sd">        the question, predicted answers, and context(s). If `ground_truth` is True, it also includes</span>
+<span class="sd">        ground truth answers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Preparing data for Haystack evaluation&quot;</span><span class="p">)</span>
+    <span class="n">haystack_data</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">ground_truth</span><span class="p">:</span>
+            <span class="n">questions</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;question&#39;</span><span class="p">]]</span>
+            <span class="n">predicted_answers</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;answer&#39;</span><span class="p">]]</span>
+            <span class="n">ground_truth_answers</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ground_truth&#39;</span><span class="p">]]</span>
+            <span class="n">contexts</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;contexts&#39;</span><span class="p">]]</span>
+
+            <span class="n">test_case</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;questions&quot;</span><span class="p">:</span> <span class="n">questions</span><span class="p">,</span>
+                <span class="s2">&quot;predicted_answers&quot;</span><span class="p">:</span> <span class="n">predicted_answers</span><span class="p">,</span>
+                <span class="s2">&quot;ground_truth_answers&quot;</span><span class="p">:</span> <span class="n">ground_truth_answers</span><span class="p">,</span>
+                <span class="s2">&quot;contexts&quot;</span><span class="p">:</span> <span class="n">contexts</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">questions</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;question&#39;</span><span class="p">]]</span>
+            <span class="n">predicted_answers</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;answer&#39;</span><span class="p">]]</span>
+            <span class="n">contexts</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;contexts&#39;</span><span class="p">]]</span>
+
+            <span class="n">test_case</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;questions&quot;</span><span class="p">:</span> <span class="n">questions</span><span class="p">,</span>
+                <span class="s2">&quot;predicted_answers&quot;</span><span class="p">:</span> <span class="n">predicted_answers</span><span class="p">,</span>
+                <span class="s2">&quot;contexts&quot;</span><span class="p">:</span> <span class="n">contexts</span>
+            <span class="p">}</span>
+
+        <span class="n">haystack_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_case</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Data prepared for Haystack evaluation&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">haystack_data</span></div>
+
+
+<div class="viewcode-block" id="haystack_evaluate_data">
+<a class="viewcode-back" href="../../evaluation.html#tools.pipeline.haystack_evaluate_data">[docs]</a>
+<span class="k">def</span> <span class="nf">haystack_evaluate_data</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="n">ground_truth</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Evaluates the prepared dataset by running it through a series of Haystack&#39;s evaluation metrics within a</span>
+<span class="sd">    pipeline. Metrics include context relevance, faithfulness of the answers, and optionally</span>
+<span class="sd">    semantic answer similarity if ground_truth is True.</span>
+
+<span class="sd">    :param data: A list of dictionaries where each dictionary contains &#39;questions&#39;, &#39;contexts&#39;,</span>
+<span class="sd">        &#39;predicted_answers&#39;, and optionally &#39;ground_truth_answers&#39; if ground_truth is True.</span>
+<span class="sd">    :param ground_truth: A flag to determine whether semantic similarity evaluation should be</span>
+<span class="sd">        performed using the ground truth answers provided in the data.</span>
+
+<span class="sd">    :return: A pandas DataFrame containing the evaluation results for each data point, including scores</span>
+<span class="sd">        for context relevance, faithfulness, and optionally semantic similarity along with the overall</span>
+<span class="sd">        scores for these metrics.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting Haystack evaluation&quot;</span><span class="p">)</span>
+    <span class="n">evaluation_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">()</span>
+    <span class="n">context_relevance_evaluator</span> <span class="o">=</span> <span class="n">ContextRelevanceEvaluator</span><span class="p">()</span>
+    <span class="n">faithfulness_evaluator</span> <span class="o">=</span> <span class="n">FaithfulnessEvaluator</span><span class="p">()</span>
+
+    <span class="n">evaluation_pipeline</span><span class="o">.</span><span class="n">add_component</span><span class="p">(</span><span class="s2">&quot;context_relevance_evaluator&quot;</span><span class="p">,</span> <span class="n">context_relevance_evaluator</span><span class="p">)</span>
+    <span class="n">evaluation_pipeline</span><span class="o">.</span><span class="n">add_component</span><span class="p">(</span><span class="s2">&quot;faithfulness_evaluator&quot;</span><span class="p">,</span> <span class="n">faithfulness_evaluator</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ground_truth</span><span class="p">:</span>
+        <span class="n">semanticanswersimilarity_evaluator</span> <span class="o">=</span> <span class="n">SASEvaluator</span><span class="p">()</span>
+        <span class="n">evaluation_pipeline</span><span class="o">.</span><span class="n">add_component</span><span class="p">(</span><span class="s2">&quot;semanticanswersimilarity_evaluator&quot;</span><span class="p">,</span> <span class="n">semanticanswersimilarity_evaluator</span><span class="p">)</span>
+
+    <span class="n">haystack_evaluation_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">test_case</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">evaluation_input</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;context_relevance_evaluator&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;questions&quot;</span><span class="p">:</span> <span class="n">test_case</span><span class="p">[</span><span class="s1">&#39;questions&#39;</span><span class="p">],</span> 
+                <span class="s2">&quot;contexts&quot;</span><span class="p">:</span> <span class="n">test_case</span><span class="p">[</span><span class="s1">&#39;contexts&#39;</span><span class="p">]</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;faithfulness_evaluator&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;questions&quot;</span><span class="p">:</span> <span class="n">test_case</span><span class="p">[</span><span class="s1">&#39;questions&#39;</span><span class="p">],</span> 
+                <span class="s2">&quot;contexts&quot;</span><span class="p">:</span> <span class="n">test_case</span><span class="p">[</span><span class="s1">&#39;contexts&#39;</span><span class="p">],</span> 
+                <span class="s2">&quot;predicted_answers&quot;</span><span class="p">:</span> <span class="n">test_case</span><span class="p">[</span><span class="s1">&#39;predicted_answers&#39;</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">ground_truth</span><span class="p">:</span>
+            <span class="n">evaluation_input</span><span class="p">[</span><span class="s2">&quot;semanticanswersimilarity_evaluator&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;predicted_answers&quot;</span><span class="p">:</span> <span class="n">test_case</span><span class="p">[</span><span class="s1">&#39;predicted_answers&#39;</span><span class="p">],</span>
+                <span class="s2">&quot;ground_truth_answers&quot;</span><span class="p">:</span> <span class="n">test_case</span><span class="p">[</span><span class="s1">&#39;ground_truth_answers&#39;</span><span class="p">]</span>
+            <span class="p">}</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">evaluation_pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">evaluation_input</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_case</span><span class="p">[</span><span class="s1">&#39;questions&#39;</span><span class="p">])):</span>
+            <span class="n">individual_data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">test_case</span><span class="p">[</span><span class="s1">&#39;questions&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+                <span class="s2">&quot;predicted_answer&quot;</span><span class="p">:</span> <span class="n">test_case</span><span class="p">[</span><span class="s1">&#39;predicted_answers&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+                <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="n">test_case</span><span class="p">[</span><span class="s1">&#39;contexts&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+                <span class="s2">&quot;context_relevance_score&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;context_relevance_evaluator&quot;</span><span class="p">][</span><span class="s2">&quot;individual_scores&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+                <span class="s2">&quot;faithfulness_score&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;faithfulness_evaluator&quot;</span><span class="p">][</span><span class="s2">&quot;individual_scores&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="n">ground_truth</span><span class="p">:</span>
+                <span class="n">individual_data</span><span class="p">[</span><span class="s2">&quot;semantic_similarity_score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;semanticanswersimilarity_evaluator&quot;</span><span class="p">][</span><span class="s2">&quot;individual_scores&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">individual_data</span><span class="p">[</span><span class="s2">&quot;ground_truth_answer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">test_case</span><span class="p">[</span><span class="s1">&#39;ground_truth_answers&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+            
+            <span class="n">haystack_evaluation_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">individual_data</span><span class="p">)</span>
+
+    <span class="n">df_haystack_evaluation_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">haystack_evaluation_data</span><span class="p">)</span>
+
+    <span class="n">overall_scores</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;context_relevance_score&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;context_relevance_evaluator&quot;</span><span class="p">][</span><span class="s2">&quot;score&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;faithfulness_score&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;faithfulness_evaluator&quot;</span><span class="p">][</span><span class="s2">&quot;score&quot;</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="n">ground_truth</span><span class="p">:</span>
+        <span class="n">overall_scores</span><span class="p">[</span><span class="s2">&quot;semantic_similarity_score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;semanticanswersimilarity_evaluator&quot;</span><span class="p">][</span><span class="s2">&quot;score&quot;</span><span class="p">]</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Overall Scores: </span><span class="si">{</span><span class="n">overall_scores</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df_haystack_evaluation_data</span></div>
+
+
+<span class="c1"># ============================================================================</span>
+<span class="c1"># Utils</span>
+<span class="c1"># ============================================================================</span>
+<div class="viewcode-block" id="prepare_dataset">
+<a class="viewcode-back" href="../../utils.html#tools.pipeline.prepare_dataset">[docs]</a>
+<span class="k">def</span> <span class="nf">prepare_dataset</span><span class="p">(</span><span class="n">flashcard_set</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts a JSON string of flashcard data into a structured dataset.</span>
+
+<span class="sd">    :param flashcard_set: A JSON string that represents a set of flashcards. Each flashcard is a dictionary</span>
+<span class="sd">                          with keys &#39;question&#39;, &#39;answer&#39;, &#39;context&#39;, and &#39;source&#39;.</span>
+
+<span class="sd">    :return: A dataset object with structured fields for questions, answers, contexts, and sources. The dataset</span>
+<span class="sd">              has features defined for each field to ensure correct data types.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Preparing dataset from JSON string&quot;</span><span class="p">)</span>
+    <span class="n">flashcard_set</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">flashcard_set</span><span class="p">)</span>
+
+    <span class="n">formatted_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;question&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;answer&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;contexts&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">flashcard_set</span><span class="p">:</span>
+        <span class="n">formatted_data</span><span class="p">[</span><span class="s1">&#39;question&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;question&#39;</span><span class="p">])</span>
+        <span class="n">formatted_data</span><span class="p">[</span><span class="s1">&#39;answer&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;answer&#39;</span><span class="p">])</span>
+        <span class="n">formatted_data</span><span class="p">[</span><span class="s1">&#39;contexts&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">]])</span>
+        <span class="n">formatted_data</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">])</span>
+
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">formatted_data</span><span class="p">)</span>
+
+    <span class="n">features</span> <span class="o">=</span> <span class="n">Features</span><span class="p">({</span>
+        <span class="s1">&#39;question&#39;</span><span class="p">:</span> <span class="n">Value</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;answer&#39;</span><span class="p">:</span> <span class="n">Value</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;contexts&#39;</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">Value</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)),</span>
+        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="n">Value</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span>
+    <span class="p">})</span>
+
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Dataset preparation complete&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dataset</span></div>
+
+
+<div class="viewcode-block" id="save_qa_pairs">
+<a class="viewcode-back" href="../../utils.html#tools.pipeline.save_qa_pairs">[docs]</a>
+<span class="k">def</span> <span class="nf">save_qa_pairs</span><span class="p">(</span><span class="n">dataset</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="n">folder_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">pipeline_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">content</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;generated_qas&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Saves the provided dataset as a CSV file formatted for question-answer pairs,</span>
+<span class="sd">    organized by topic, pipeline name and content.</span>
+
+<span class="sd">    :param dataset: The dataset containing the question-answer pairs. It can be a pandas DataFrame</span>
+<span class="sd">                    or any object that has a `to_pandas()` method.</span>
+<span class="sd">    :param folder_name: The name of the folder where the CSV file will be saved.</span>
+<span class="sd">    :param topic: The main topic of the question-answer pairs, used in the file name.</span>
+<span class="sd">                  The spaces in the topic will be replaced with underscores and converted to lowercase.</span>
+<span class="sd">    :param pipeline_name: The name of the pipeline used to generate the question-answer pairs.</span>
+<span class="sd">    :param content: An optional descriptor that precedes the file naming convention.</span>
+<span class="sd">                    Defaults to &#39;generated_qas&#39;.</span>
+
+<span class="sd">    :return: None</span>
+<span class="sd">    :raises Exception: If the dataset cannot be converted to a pandas DataFrame.</span>
+
+<span class="sd">    Upon successful saving of the file, this function prints &quot;File saved as CSV.&quot; to the standard output.</span>
+<span class="sd">    The file is saved with a semicolon as the delimiter and commas as the decimal separator.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saving QA pairs to CSV: </span><span class="si">{</span><span class="n">folder_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">pipeline_name</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">)</span>
+    <span class="n">topic</span> <span class="o">=</span> <span class="n">topic</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error converting dataset to DataFrame: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">folder_name</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">dataset</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">folder_name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">pipeline_name</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">decimal</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;File saved as CSV.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="load_qa_pairs">
+<a class="viewcode-back" href="../../utils.html#tools.pipeline.load_qa_pairs">[docs]</a>
+<span class="k">def</span> <span class="nf">load_qa_pairs</span><span class="p">(</span>
+    <span class="n">folder_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">pipeline_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">content</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;generated_qas_gt&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Loads question-answer pairs from a CSV file into a pandas DataFrame. The CSV file must be</span>
+<span class="sd">    named according to a specific naming convention and located in the specified folder.</span>
+
+<span class="sd">    :param folder_name: The folder where the CSV file is stored.</span>
+<span class="sd">    :param topic: The main topic of the question-answer pairs, used in the file name.</span>
+<span class="sd">                  The spaces in the topic will be replaced with underscores and converted to lowercase.</span>
+<span class="sd">    :param pipeline_name: The name of the pipeline used to generate the question-answer pairs,</span>
+<span class="sd">                          used in the file name.</span>
+<span class="sd">    :param content: An optional descriptor for the file name, defaults to &#39;generated_qas_gt&#39;.</span>
+
+<span class="sd">    :return: A pandas DataFrame containing the loaded question-answer pairs. The &#39;contexts&#39; column</span>
+<span class="sd">             is processed to remove square brackets and single quotes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading QA pairs from CSV: </span><span class="si">{</span><span class="n">folder_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">pipeline_name</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">)</span>
+    <span class="n">topic</span> <span class="o">=</span> <span class="n">topic</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+    <span class="n">dataset_gt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">folder_name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">pipeline_name</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">decimal</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">dataset_gt</span><span class="p">[</span><span class="s1">&#39;contexts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset_gt</span><span class="p">[</span><span class="s1">&#39;contexts&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;[]&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;QA pairs loaded successfully&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dataset_gt</span></div>
+
+</pre></div>
+</main>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="container-fluid bg-primary text-light">
+        <div class="container">
+            <div class="row">
+        <div class="col p-4">
+            
+                <nav aria-label="Footer">
+                    <ul class="nav justify-content-center mb-2">
+                        
+                            
+                            
+                            <li class="nav-item"><a class="nav-link text-light"  href="https://wagtail.org/features/">Features</a></li>
+                        
+                            
+                            
+                            <li class="nav-item"><a class="nav-link text-light"  href="https://wagtail.org/about-wagtail/"> About Wagtail</a></li>
+                        
+                            
+                            
+                            <li class="nav-item"><a class="nav-link text-light"  href="https://wagtail.org/services/"> Services</a></li>
+                        
+                            
+                            
+                            <li class="nav-item"><a class="nav-link text-light"  href="https://wagtail.org/blog/"> Blog</a></li>
+                        
+                            
+                            
+                            <li class="nav-item"><a class="nav-link text-light"  href="https://wagtail.org/packages/"> Packages</a></li>
+                        
+                            
+                            
+                            <li class="nav-item"><a class="nav-link text-light"  href="https://wagtail.org/developers/"> Developers</a></li>
+                        
+                    </ul>
+                </nav>
+            
+            <div class="text-center">
+                <p style="display: none">
+                    <a class="text-light" href="https://github.com/wagtail/sphinx_wagtail_theme" rel="nofollow" target="_blank">
+                        Wagtail Sphinx Theme 6.3.0
+                    </a>
+                </p>
+            </div>
+            <div class="text-center">
+                    &copy; Copyright 2024, Christina Schlager
+            </div>
+        </div>
+    </div>
+        </div>
+    </footer>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script type="text/javascript" src="../../_static/dist/theme.js"></script>
+        <script type="text/javascript" src="../../_static/dist/vendor.js"></script>
+        <script type="text/javascript" src="../../_static/searchtools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function() { Search.loadIndex("../../searchindex.js"); });
+        </script>
+        <script type="text/javascript" id="searchindexloader"></script>
+    </body>
+</html>
