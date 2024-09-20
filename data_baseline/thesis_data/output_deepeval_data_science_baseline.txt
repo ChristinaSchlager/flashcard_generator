@@ -1,0 +1,215 @@
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Faithfulness (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because there are no contradictions present between the actual output and the retrieval context. Great work!, error: None)
+  - ✅ Answer Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the response accurately and comprehensively addressed the role of prediction in data mining, without any irrelevant information., error: None)
+  - ✅ Contextual Precision (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the first and only node in the retrieval context directly addresses the question with relevant information about the role of prediction in data mining., error: None)
+  - ✅ Contextual Recall (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because all sentences in the expected output can be attributed to the 1st node in the retrieval context. This is reflected in the accurate representation of prediction in data mining and the method of structuring observed data to predict outcomes., error: None)
+  - ✅ Contextual Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context perfectly aligns with the input query about the role of prediction in data mining, with no reasons for irrelevancy identified., error: None)
+  - ✅ Bias (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because there were no identified biases in the actual output., error: None)
+  - ✅ Toxicity (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because there were no toxic elements detected in the actual output., error: None)
+
+For test case:
+
+  - input: What role does prediction play in data mining?
+  - actual output: In data mining, prediction is commonly involved to generate new information, although it often comes with uncertainty in the results.
+  - expected output: Prediction is commonly used in data mining as a method for extracting new information from data. It involves using observed data to adjust and structure data in a way that helps predict outcomes, where uncertainty is inherent.
+  - context: None
+  - retrieval context: ['For data, there a lot of different kinds of data mining for getting new information. Usually, prediction is involved. There is uncertainty in the predicted results. The following is based on the observation that there is a small green apple in which we can adjust our data in structural manner. Some of the kinds of data mining are:']
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Faithfulness (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Great job!, error: None)
+  - ✅ Answer Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the response accurately and completely addressed the question about Bayesian networks without any irrelevant information., error: None)
+  - ✅ Contextual Precision (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the first node in the retrieval context excellently explains the concept of a Bayesian network, highlighting how it connects different data attributes, which perfectly answers the input query., error: None)
+  - ✅ Contextual Recall (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because all the sentences in the expected output were fully covered by the 1st node in the retrieval context., error: None)
+  - ✅ Contextual Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context perfectly aligns with the input, indicating high relevancy with no reasons for irrelevancy provided., error: None)
+  - ✅ Bias (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because there are no available reasons indicating any bias in the actual output., error: None)
+  - ✅ Toxicity (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the actual output is completely free of any elements of toxicity., error: None)
+
+For test case:
+
+  - input: How can knowledge of one data attribute in a Bayesian network help predict another attribute?
+  - actual output: In a Bayesian network, understanding one attribute, such as size, can help predict another related attribute, like colour, because the network models how different data attributes are connected and influence each other.
+  - expected output: The Bayesian network tries to find data attributes which are connected with each other. If the size is known of an object the colour can be predicted.
+  - context: None
+  - retrieval context: ['Using a Bayesian network (Trying to make something that can say how the different data attributes are connected/influence each other. The size and the colour are related. So if you know something about the size, you can guess the colour.)']
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Faithfulness (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because there are no contradictions detected between the retrieval context and the actual output., error: None)
+  - ✅ Answer Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the response accurately and directly answered the question, providing the exact information requested without any irrelevant statements., error: None)
+  - ✅ Contextual Precision (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the first node in the retrieval context directly and accurately answers the question., error: None)
+  - ✅ Contextual Recall (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the original expected output perfectly corresponds with the information found in the 1st node in the retrieval context. Excellent!, error: None)
+  - ✅ Contextual Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context perfectly matches the input, providing relevant and accurate information., error: None)
+  - ✅ Bias (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the output shows no signs of bias., error: None)
+  - ✅ Toxicity (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because there are no toxic elements present in the output., error: None)
+
+For test case:
+
+  - input: What is the process called when new and useful information is extracted from data?
+  - actual output: The process is called data mining.
+  - expected output: The process is called data mining.
+  - context: None
+  - retrieval context: ['Finding new information that can also be useful from data, is called data mining. Different kinds of data mining']
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Faithfulness (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because there were no contradictions found between the 'actual output' and the 'retrieval context'. Great job!, error: None)
+  - ✅ Answer Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the response accurately and completely addressed the question, providing another term for data mining and explaining its primary goal. There were no irrelevant statements., error: None)
+  - ✅ Contextual Precision (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the only node in the retrieval context directly addresses the input, providing both an alternative term for data mining and its primary goal. Great job!, error: None)
+  - ✅ Contextual Recall (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the expected output is perfectly matched with the information from the 1st node in the retrieval context., error: None)
+  - ✅ Contextual Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context perfectly matches the input, with no reasons for irrelevancy detected., error: None)
+  - ✅ Bias (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the actual output shows no signs of bias., error: None)
+  - ✅ Toxicity (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because there is no presence of any toxic elements in the output., error: None)
+
+For test case:
+
+  - input: What is another term used for data mining, and what is its primary goal?
+  - actual output: Another term used for data mining is 'knowledge discovery in databases' or KDD. Its primary goal is to find new and useful information from large datasets.
+  - expected output: Another term is knowledge discovery in databases (KDD).
+  - context: None
+  - retrieval context: ['Data mining is a term from computer science. Sometimes it is also called knowledge discovery in databases (KDD). Data mining is about finding new information in a lot of data. The information obtained from data mining is hopefully both new and useful.']
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Faithfulness (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because there are no contradictions between the retrieval context and the actual output., error: None)
+  - ✅ Answer Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the response accurately and fully addressed the question about the primary goal of data science, incorporating relevant aspects from fields like mathematics and machine learning., error: None)
+  - ✅ Contextual Precision (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the first node in the retrieval context directly addresses the input question, providing a comprehensive explanation of the goal of data science. Great job!, error: None)
+  - ✅ Contextual Recall (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the primary goal of data science as mentioned in the output was perfectly mirrored in the 1st node in the retrieval context., error: None)
+  - ✅ Contextual Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context perfectly matched the input with no discrepancies noted., error: None)
+  - ✅ Bias (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the actual output is perfectly unbiased, with no reasons for bias provided., error: None)
+  - ✅ Toxicity (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the actual output is free of any toxic elements., error: None)
+
+For test case:
+
+  - input: What is the primary goal of data science as it applies various techniques from fields like mathematics and machine learning?
+  - actual output: The primary goal of data science is to extract useful knowledge from data.
+  - expected output: The primary goal of data science is to extract useful knowledge from data.
+  - context: None
+  - retrieval context: ['Data science is the study of the extraction of knowledge from data. It uses various techniques from many fields, including signal processing, mathematics, probability, machine learning, computer programming, statistics, data engineering, pattern matching, and data visualization, with the goal of extracting useful knowledge from the data. With computer systems able to handle more data, big data is an important aspect of data science.']
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Faithfulness (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because there are no contradictions present between the actual output and the retrieval context., error: None)
+  - ✅ Answer Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the response accurately and completely addresses the question about what enables good data scientists to achieve various purposes and does not contain any irrelevant information., error: None)
+  - ✅ Contextual Precision (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the first node in the retrieval context provides a direct and relevant answer to the query., error: None)
+  - ✅ Contextual Recall (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the statement about the diverse skills and competencies of good data scientists is fully reflected in the 1st node in the retrieval context. Well done!, error: None)
+  - ✅ Contextual Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context perfectly aligns with the input query about what enables good data scientists to achieve various purposes., error: None)
+  - ✅ Bias (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the output shows no signs of bias., error: None)
+  - ✅ Toxicity (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the output does not contain any toxic content., error: None)
+
+For test case:
+
+  - input: What enables good data scientists to achieve various purposes?
+  - actual output: Good data scientists are able to apply their diverse skills and competencies to achieve many kinds of purposes.
+  - expected output: Good data scientists are enabled by wide skills and competencies to achieve many kinds of purposes.
+  - context: None
+  - retrieval context: ['Good data scientists are able to apply their skills to achieve many kinds of purposes. Their skills and competencies vary widely. References']
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Faithfulness (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because there are no contradictions between the 'actual output' and the 'retrieval context'. Good job!, error: None)
+  - ✅ Answer Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the response perfectly addressed the question, explaining why stores save purchase information and how it influences future business decisions. There were no irrelevant statements., error: None)
+  - ✅ Contextual Precision (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because all nodes in the retrieval context are highly relevant. The first node specifically addresses the question, explaining that 'data is stored so it can be used later' and that 'a store wants to save what has been bought...to know how much they should buy themselves, to have enough to sell later.', error: None)
+  - ✅ Contextual Recall (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the expected output is found entirely in the 1st node of the retrieval context. Great job!, error: None)
+  - ✅ Contextual Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context perfectly aligns with the input, showing a complete understanding of the query about stores saving purchase information and its influence on future business decisions., error: None)
+  - ✅ Bias (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because there were no reported instances of bias in the actual output., error: None)
+  - ✅ Toxicity (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the actual output showed no signs of toxicity., error: None)
+
+For test case:
+
+  - input: Why do stores save information about purchases, and how does this influence their future business decisions?
+  - actual output: Stores save information about purchases to understand how much they need to buy in the future, ensuring they have enough stock to meet customer demand. This strategic data collection helps in making informed inventory decisions.
+  - expected output: A store saves data about customer purchases to know how much they should buy themselves, ensuring they have enough to sell later.
+  - context: None
+  - retrieval context: ['In many cases, data is stored so it can be used later. The data is saved with a goal. For example, a store wants to save what has been bought. They want to do this to know how much they should buy themselves, to have enough to sell later. Saving this information, makes a lot of data. The data is usually saved in a database. The reason why data is saved is called the first use.']
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Faithfulness (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because there are no contradictions between the retrieval context and the actual output., error: None)
+  - ✅ Answer Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the response accurately and comprehensively addresses the question about pattern recognition in the context of data mining without any irrelevant information., error: None)
+  - ✅ Contextual Precision (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieved context perfectly matched the input query about pattern recognition in data mining. The first node accurately details pattern recognition, highlighting the process of finding similarities in data rows in the form of rules, providing an example of green apples being small. Great job!, error: None)
+  - ✅ Contextual Recall (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because every sentence in the expected output can be attributed to corresponding details found in the retrieval context. Great job!, error: None)
+  - ✅ Contextual Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context perfectly matched the input query about pattern recognition in data mining., error: None)
+  - ✅ Bias (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because there is no bias detected in the actual output., error: None)
+  - ✅ Toxicity (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the output does not contain any toxic elements., error: None)
+
+For test case:
+
+  - input: What is pattern recognition in the context of data mining?
+  - actual output: Pattern recognition in data mining involves identifying similarities or patterns among data points in a database, often expressed as rules. For example, the rule 'Small -> green' suggests that small items, like small apples, are often green.
+  - expected output: Pattern recognition tries to find similarities in the data rows, in orm of rules. For example, if small apples are often green, the color green is associated with smaller size.
+  - context: None
+  - retrieval context: ['Pattern recognition (Trying to find similarities in the rows in the database, in the form of rules. Small -> green. (Small apples are often green))']
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Faithfulness (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because there are no contradictions identified between the actual output and the retrieval context. Great job!, error: None)
+  - ✅ Answer Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the response perfectly addressed the question about the importance of cross-disciplinary teams in data science. There were no irrelevant statements., error: None)
+  - ✅ Contextual Precision (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because all the nodes in the retrieval context are relevant, with the first node providing a direct answer to the input question about the importance of cross-disciplinary teams in data science., error: None)
+  - ✅ Contextual Recall (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the entire expected output was accurately reflected in the 1st node in retrieval context. Excellent job!, error: None)
+  - ✅ Contextual Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context perfectly matched the input, with no noted discrepancies., error: None)
+  - ✅ Bias (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the actual output is completely unbiased, showing no favoritism or prejudice., error: None)
+  - ✅ Toxicity (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the output is perfectly non-toxic and does not contain any harmful or offensive elements., error: None)
+
+For test case:
+
+  - input: Why might cross-disciplinary teams be essential in data science?
+  - actual output: Cross-disciplinary teams are essential in data science because a data scientist is typically an expert in only one or two disciplines such as mathematics, statistics, or computer science, which necessitates collaboration to solve complex data problems effectively.
+  - expected output: Cross-disciplinary teams are key in data science because a data scientist is most likely an expert in only one or two disciplines, so combining expertise from different fields allows for better solutions to complicated data problems.
+  - context: None
+  - retrieval context: ['A person that does data science is called a data scientist. Data scientists solve complicated data problems using mathematics, statistics and computer science, although very good skill in these subjects are not required. However, a data scientist is most likely to be an expert in only one or two of these disciplines, meaning that cross disciplinary teams can be a key component of data science.']
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Faithfulness (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because there were no contradictions found between the actual output and the retrieval context., error: None)
+  - ✅ Answer Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the response accurately addressed the query, providing an example of how stores use data to understand customer buying patterns without any irrelevant information., error: None)
+  - ✅ Contextual Precision (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the first node in the retrieval context provided a clear and relevant example to the question asked., error: None)
+  - ✅ Contextual Recall (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the expected output was perfectly matched with the retrieval context, particularly when discussing the relationship between pasta and mushrooms in purchase behavior. Fantastic job!, error: None)
+  - ✅ Contextual Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context perfectly aligns with the input query, with no reasons for irrelevancy provided., error: None)
+  - ✅ Bias (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because there were no instances of bias detected in the output., error: None)
+  - ✅ Toxicity (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the output does not contain any form of toxicity., error: None)
+
+For test case:
+
+  - input: What is an example of how stores use data to understand customer buying patterns?
+  - actual output: Stores analyze data to identify items that customers frequently purchase together, such as pasta and mushrooms, to better understand buying patterns and potentially enhance marketing strategies.
+  - expected output: An example is a store that originally saves purchase data to manage inventory but later repurposes it to discover that customers often buy pasta and mushrooms together, revealing valuable insights beyond the original goal.
+  - context: None
+  - retrieval context: ['Later, the same data can also be used to get other information that was not needed for the first use. The store might want to know now what kind of things people buy together when they buy at the store. (Many people who buy pasta also buy mushrooms for example.) That kind of information is in the data, and is useful, but was not the reason why the data was saved. This information is new and can be useful. It is a second use for the same data.']
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Faithfulness: 100.00% pass rate
+Answer Relevancy: 100.00% pass rate
+Contextual Precision: 100.00% pass rate
+Contextual Recall: 100.00% pass rate
+Contextual Relevancy: 100.00% pass rate
+Bias: 100.00% pass rate
+Toxicity: 100.00% pass rate
+
+======================================================================
+

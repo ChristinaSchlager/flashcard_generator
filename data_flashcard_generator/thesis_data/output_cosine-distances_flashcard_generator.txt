@@ -1,0 +1,30 @@
+Relevancescore: 0.12890857458114624
+Document: ('https://simple.wikipedia.org/wiki/Data%20science', '447707')
+
+Relevancescore: 0.28915125131607056
+Document: ('https://simple.wikipedia.org/wiki/Data%20structure', '51975')
+
+Relevancescore: 0.3084522485733032
+Document: ('https://simple.wikipedia.org/wiki/Data%20type', '392913')
+
+Relevancescore: 0.30852454900741577
+Document: ('https://simple.wikipedia.org/wiki/Data%20mining', '49697')
+
+Relevancescore: 0.3123542070388794
+Document: ('https://simple.wikipedia.org/wiki/Bioinformatics', '13473')
+
+Relevancescore: 0.3137427568435669
+Document: ('https://simple.wikipedia.org/wiki/Information', '3609')
+
+Relevancescore: 0.31483781337738037
+Document: ('https://simple.wikipedia.org/wiki/Computer%20science', '110')
+
+Relevancescore: 0.32246482372283936
+Document: ('https://simple.wikipedia.org/wiki/Protein%20Data%20Bank', '316224')
+
+Relevancescore: 0.32845038175582886
+Document: ('https://simple.wikipedia.org/wiki/Data%20migration', '47617')
+
+Relevancescore: 0.3317989110946655
+Document: ('https://simple.wikipedia.org/wiki/Data%20validation', '245242')
+

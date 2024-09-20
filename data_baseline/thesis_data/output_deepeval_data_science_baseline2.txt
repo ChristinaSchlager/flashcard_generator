@@ -1,0 +1,135 @@
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Faithfulness (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because there are no contradictions present between the actual output and the retrieval context. Excellent job!, error: None)
+  - ✅ Answer Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the response perfectly addressed the question about the importance of selecting sampling locations when measuring the lake's water quality., error: None)
+  - ✅ Contextual Precision (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the node in the retrieval context perfectly addresses the question, explaining how the selection of sampling locations 'directly influences the statistics' when measuring the water quality of a lake. A great match!, error: None)
+  - ✅ Contextual Recall (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because every sentence in the expected output was found to be attributable to the 1st node in the retrieval context; particularly, the importance of sampling locations and the impact on water quality measurement., error: None)
+  - ✅ Contextual Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context perfectly matched the input, with no reasons for irrelevancy provided., error: None)
+  - ✅ Bias (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because there were no instances of bias detected in the output., error: None)
+  - ✅ Toxicity (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the output did not contain any toxic elements., error: None)
+
+For test case:
+
+  - input: Why is the selection of sampling locations crucial when measuring the water quality of a lake?
+  - actual output: The selection of sampling locations is crucial because it directly influences the statistics and results of the study. For example, taking samples next to a waste drain versus a far-away spot in the lake will yield different results, affecting the accuracy and representation of the water quality assessment.
+  - expected output: The selection of sampling locations is crucial because it has a direct influence on the measurement itself. For example, when the water quality should be measured, it makes a big difference if the water sample is taken near a waste drain or in a hard-to-reach spot of the lake.
+  - context: None
+  - retrieval context: ['The choice of which individuals to take for a survey or data collection is important, as it directly influences the statistics. When the statistics are done, it can no longer be determined which individuals are taken. Suppose we want to measure the water quality of a big lake. If we take samples next to the waste drain, we will get different results than if the samples are taken in a far-away and hard-to-reach spot of the lake.']
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Faithfulness (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Good job!, error: None)
+  - ✅ Answer Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the response accurately and completely addressed the question asked, with no irrelevant information included., error: None)
+  - ✅ Contextual Precision (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context accurately and effectively addresses the input by comparing neural networks to a 'black box' in data science. Great job!, error: None)
+  - ✅ Contextual Recall (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because every sentence in the expected output can be attributed to the 1st node in the retrieval context, which discusses the complexity and mysterious nature of neural networks, likening them to a hard-to-understand brain or a black box., error: None)
+  - ✅ Contextual Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context perfectly aligns with the input, with no given reasons for irrelevancy., error: None)
+  - ✅ Bias (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because there were no identified biases in the actual output., error: None)
+  - ✅ Toxicity (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the output does not contain any toxic elements., error: None)
+
+For test case:
+
+  - input: Why are neural networks often compared to a 'black box' in data science?
+  - actual output: Neural networks are often compared to a 'black box' because, similar to how a neural network can predict that a green apple is likely to be sour without us understanding the intricate details of its internal processes, we know it produces accurate results but the exact workings inside the model remain largely unknown.
+  - expected output: Neural networks are often compared to a brain which is hard to understand. It is not fully explainable and therefore often like a black box.
+  - context: None
+  - retrieval context: ['Using a Neural network (Trying to make a model like a brain, which is hard to understand, but a computer can tell that if the apple is green it has a higher chance to be sour, if we tell the computer the apple is green. So this is like a black box model, we do not know how it works, but it works.)']
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Faithfulness (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because there are no contradictions present between the actual output and the information from the retrieval context., error: None)
+  - ✅ Answer Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the response thoroughly and accurately addresses the question about why stores save purchase information and how it influences their future business decisions. There are no irrelevant statements in the output., error: None)
+  - ✅ Contextual Precision (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the first (and only) node in the retrieval context provides a relevant explanation, addressing both why stores save purchase data and how it influences their future business decisions. Great job!, error: None)
+  - ✅ Contextual Recall (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the expected output perfectly aligns with the information provided in the 1st node in the retrieval context. Excellent work!, error: None)
+  - ✅ Contextual Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context perfectly matches the input query, with no reasons for irrelevancy detected., error: None)
+  - ✅ Bias (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because there were no signs of bias detected in the actual output., error: None)
+  - ✅ Toxicity (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the output is completely free from any toxic content., error: None)
+
+For test case:
+
+  - input: Why do stores save information about purchases, and how does this influence their future business decisions?
+  - actual output: Stores save information about purchases to understand how much they need to buy in the future, ensuring they have enough stock to meet customer demand. This strategic data collection helps in making informed inventory decisions.
+  - expected output: A store saves data about customer purchases to know how much they should buy themselves, ensuring they have enough to sell later.
+  - context: None
+  - retrieval context: ['In many cases, data is stored so it can be used later. The data is saved with a goal. For example, a store wants to save what has been bought. They want to do this to know how much they should buy themselves, to have enough to sell later. Saving this information, makes a lot of data. The data is usually saved in a database. The reason why data is saved is called the first use.']
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Faithfulness (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because there are no contradictions between the actual output and the retrieval context., error: None)
+  - ✅ Answer Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the response accurately and completely addresses the query about the importance of cross-disciplinary teams in data science, without any irrelevant information., error: None)
+  - ✅ Contextual Precision (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the first and only node in the retrieval context correctly and directly addresses the input question, explaining that 'a data scientist is most likely to be an expert in only one or two of these disciplines, meaning that cross disciplinary teams can be a key component of data science.' Great job!, error: None)
+  - ✅ Contextual Recall (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the expected output aligns perfectly with the 1st node in the retrieval context, capturing the essence of cross-disciplinary teams being key in data science., error: None)
+  - ✅ Contextual Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context perfectly aligns with the input, with no reasons for irrelevancy provided., error: None)
+  - ✅ Bias (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the output perfectly represents the data without any abnormalities or bias., error: None)
+  - ✅ Toxicity (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the output contains no toxic elements., error: None)
+
+For test case:
+
+  - input: Why might cross-disciplinary teams be essential in data science?
+  - actual output: Cross-disciplinary teams are essential in data science because a data scientist is typically an expert in only one or two disciplines such as mathematics, statistics, or computer science, which necessitates collaboration to solve complex data problems effectively.
+  - expected output: Cross-disciplinary teams are key in data science because a data scientist is most likely an expert in only one or two disciplines, so combining expertise from different fields allows for better solutions to complicated data problems.
+  - context: None
+  - retrieval context: ['A person that does data science is called a data scientist. Data scientists solve complicated data problems using mathematics, statistics and computer science, although very good skill in these subjects are not required. However, a data scientist is most likely to be an expert in only one or two of these disciplines, meaning that cross disciplinary teams can be a key component of data science.']
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Faithfulness (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because there are no contradictions noted between the retrieval context and the actual output., error: None)
+  - ✅ Answer Relevancy (score: 0.6666666666666666, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.67 because the output partially answers the question about the difficulties in obtaining large random samples in statistical studies. However, the mention of participants receiving a placebo or fake treatment is irrelevant, hence reducing the overall relevancy score., error: None)
+  - ✅ Contextual Precision (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the only node in the retrieval context perfectly addresses the input query, explaining the difficulties of obtaining large random samples in statistical studies., error: None)
+  - ✅ Contextual Recall (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because all sentences in the expected output were found in the 1st node in the retrieval context. Great job!, error: None)
+  - ✅ Contextual Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context perfectly matches the input, with no reasons for irrelevancy provided., error: None)
+  - ✅ Bias (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the actual output demonstrated no bias., error: None)
+  - ✅ Toxicity (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the output does not contain any toxic elements., error: None)
+
+For test case:
+
+  - input: Why can large random samples sometimes be difficult to obtain in statistical studies?
+  - actual output: Large random samples can be hard to take because of logistical challenges, the reluctance of individuals to participate, or the awareness of participants that they are receiving a placebo or fake treatment.
+  - expected output: It is difficult to obtain large random samples in statistical studies because they require resources and coordination. If people are not asked, or refuse to answer, or know they are getting a fake treatment, this can cause bias. 
+  - context: None
+  - retrieval context: ['We can reduce chance errors by taking a larger sample, and we can avoid some bias by choosing randomly. However, sometimes large random samples are hard to take. And bias can happen if different people are not asked, or refuse to answer our questions, or if they know they are getting a fake treatment. These problems can be hard to fix. See standard error for more.']
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Faithfulness (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because there are no contradictions present between the actual output and the retrieval context., error: None)
+  - ✅ Answer Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the output perfectly addressed the question, providing an example of how stores use data to understand customer buying patterns., error: None)
+  - ✅ Contextual Precision (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the first node in the retrieval context provides a clear and relevant example of how stores use data to understand customer buying patterns, exactly answering the input., error: None)
+  - ✅ Contextual Recall (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context perfectly captured the original output's information about a store finding out that customers often buy pasta and mushrooms together., error: None)
+  - ✅ Contextual Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context perfectly matched the input, with no reasons for irrelevancy provided., error: None)
+  - ✅ Bias (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because there were no detected biases in the actual output., error: None)
+  - ✅ Toxicity (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because there were no toxic elements identified in the output., error: None)
+
+For test case:
+
+  - input: What is an example of how stores use data to understand customer buying patterns?
+  - actual output: Stores analyze data to identify items that customers frequently purchase together, such as pasta and mushrooms, to better understand buying patterns and potentially enhance marketing strategies.
+  - expected output: An example is a store that originally saves purchase data to manage inventory but later repurposes it to discover that customers often buy pasta and mushrooms together, revealing valuable insights beyond the original goal.
+  - context: None
+  - retrieval context: ['Later, the same data can also be used to get other information that was not needed for the first use. The store might want to know now what kind of things people buy together when they buy at the store. (Many people who buy pasta also buy mushrooms for example.) That kind of information is in the data, and is useful, but was not the reason why the data was saved. This information is new and can be useful. It is a second use for the same data.']
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Faithfulness: 100.00% pass rate
+Answer Relevancy: 100.00% pass rate
+Contextual Precision: 100.00% pass rate
+Contextual Recall: 100.00% pass rate
+Contextual Relevancy: 100.00% pass rate
+Bias: 100.00% pass rate
+Toxicity: 100.00% pass rate
+
+======================================================================
+

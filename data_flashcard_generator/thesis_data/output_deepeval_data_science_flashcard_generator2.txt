@@ -1,0 +1,75 @@
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Faithfulness (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because there are no contradictions between the actual output and the retrieval context., error: None)
+  - ✅ Answer Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the response accurately addressed the question about differentiating data types without any irrelevant information., error: None)
+  - ✅ Contextual Precision (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the first node in the retrieval context directly provides the factors to differentiate data types., error: None)
+  - ✅ Contextual Recall (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the sentence from the expected output perfectly matches the information found in the 1st node in the retrieval context. Keep up the good work!, error: None)
+  - ✅ Contextual Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context perfectly aligns with the input, providing relevant and useful information., error: None)
+  - ✅ Bias (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the output is completely unbiased., error: None)
+  - ✅ Toxicity (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the output does not contain any toxic elements., error: None)
+
+For test case:
+
+  - input: What factors can be used to further differentiate data types?
+  - actual output: Their size, the number of Bytes they occupy, or the number of Bytes the referenced object occupies in the case of memory address.
+  - expected output: Beyond their initial classification can  be further differentiated by their size, how many bytes each of those occupy, or in the case of memory address how many bytes the referenced object occupies.
+  - context: None
+  - retrieval context: ['All of which may be further differentiated by their size, how many Bytes each of those occupy, or—in the case of memory address—how many Bytes the referenced object occupies.']
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Faithfulness (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because there are no contradictions in the actual output, meaning it perfectly aligns with the information in the retrieval context., error: None)
+  - ✅ Answer Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the response accurately and completely addressed the input question without any irrelevant information., error: None)
+  - ✅ Contextual Precision (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the first (and only) node in the retrieval context accurately addressed the question by providing the exact range of allowed integer values on an 8-bit computer., error: None)
+  - ✅ Contextual Recall (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the content of the expected output was completely found in the 1st node in the retrieval context. Great job!, error: None)
+  - ✅ Contextual Relevancy (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the retrieval context perfectly aligns with the input query, as there are no listed reasons for irrelevancy., error: None)
+  - ✅ Bias (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the actual output is completely unbiased, showing a balanced and fair representation., error: None)
+  - ✅ Toxicity (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the actual output does not contain any toxic elements., error: None)
+
+For test case:
+
+  - input: What is the range of allowed integer values on an 8-bit computer?
+  - actual output: The range includes all whole numbers between -127 and 127.
+  - expected output: The range of allowed values includes all whole numbers between -127 and 127.
+  - context: None
+  - retrieval context: ['The data type integer has a certain range of allowed values. For example on an 8-bit computer, this range includes all whole numbers between -127 and 127. The value 1337, however, is not an allowed integer value.']
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Faithfulness (score: 0.3333333333333333, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.33 because the actual output incorrectly claims that characters and strings are subsets of real numbers and can be represented as numerical values within real numbers, which is not supported by the retrieval context., error: None)
+  - ❌ Answer Relevancy (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the actual output contains incorrect and misleading information. It incorrectly states that characters and strings are subsets of real numbers and that they can be represented as real numbers within the context of data types, when in fact, they are different and distinct data types., error: None)
+  - ✅ Contextual Precision (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the first node in the retrieval context directly and accurately answers the question about the relationship between characters, strings, and real numbers in data types., error: None)
+  - ✅ Contextual Recall (score: 1.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 1.00 because the sentence in the original output perfectly aligns with the information provided in the first node in the retrieval context. Great job!, error: None)
+  - ❌ Contextual Relevancy (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the context incorrectly states 'strings a subset of real numbers', which is not accurate in the context of data types., error: None)
+  - ✅ Bias (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because there are no bias indicators in the actual output., error: None)
+  - ✅ Toxicity (score: 0.0, threshold: 0.5, strict: False, evaluation model: gpt-4, reason: The score is 0.00 because the output didn't contain any toxic elements., error: None)
+
+For test case:
+
+  - input: What is the relationship between characters, strings, and real numbers in the context of data types?
+  - actual output: Characters and strings are a subset of real numbers, indicating that they can be represented as numerical values within the broader category of real numbers.
+  - expected output: Characters are individuals letters whereby strings are a subset of real numbers.
+  - context: None
+  - retrieval context: ['characters (individual letters) and strings a subset of real numbers']
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Faithfulness: 66.67% pass rate
+Answer Relevancy: 66.67% pass rate
+Contextual Precision: 100.00% pass rate
+Contextual Recall: 100.00% pass rate
+Contextual Relevancy: 66.67% pass rate
+Bias: 100.00% pass rate
+Toxicity: 100.00% pass rate
+
+======================================================================
+

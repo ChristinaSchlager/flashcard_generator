@@ -1,0 +1,30 @@
+Relevancescore: 0.324198842048645
+Document: ('https://simple.wikipedia.org/wiki/Data%20science', '447707')
+
+Relevancescore: 0.5271141529083252
+Document: ('https://simple.wikipedia.org/wiki/Data%20mining', '49697')
+
+Relevancescore: 0.5895955562591553
+Document: ('https://simple.wikipedia.org/wiki/Statistics', '789')
+
+Relevancescore: 0.5951049327850342
+Document: ('https://simple.wikipedia.org/wiki/Analytics', '747593')
+
+Relevancescore: 0.6078900098800659
+Document: ('https://simple.wikipedia.org/wiki/Cluster%20analysis', '593732')
+
+Relevancescore: 0.6092822551727295
+Document: ('https://simple.wikipedia.org/wiki/Statistics', '789')
+
+Relevancescore: 0.6139137148857117
+Document: ('https://simple.wikipedia.org/wiki/Computer%20science', '110')
+
+Relevancescore: 0.6276156306266785
+Document: ('https://simple.wikipedia.org/wiki/Big%20data', '564597')
+
+Relevancescore: 0.635540246963501
+Document: ('https://simple.wikipedia.org/wiki/Machine%20learning', '564928')
+
+Relevancescore: 0.6417042016983032
+Document: ('https://simple.wikipedia.org/wiki/Supervised%20learning', '359370')
+

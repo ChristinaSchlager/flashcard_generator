@@ -1,0 +1,4 @@
+;question;predicted_answer;context;context_relevance_score;faithfulness_score
+0;What does correlation measure in statistics and probability theory?;How closely related two sets of data are.;In statistics and probability theory, correlation is a way to indicate how closely related two sets of data are.;1;1,0
+1;What is an important consideration when interpreting the relationship between two correlated variables?;A third factor may be involved, and correlation does not necessarily imply causation.;Correlation does not always mean that one causes the other. In fact, it is very possible that there is a third factor involved.;1;1,0
+2;What happens to two sets of data when they have a positive correlation?;They go up together.;Correlation usually has one of two directions. These are positive or negative. If it is positive, then the two sets go up together. If it is negative, then one goes up while the other goes down.;1;0,0
